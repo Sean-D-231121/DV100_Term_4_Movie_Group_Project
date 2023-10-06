@@ -45,7 +45,7 @@ addForm = () =>{
  $("#form-container").append($("#sign-in-temp").html());
  $(".form-error").hide();
 }
-// Stores username in browser's local storage.
+// Stores username in browser's local storage after signing in username and password need to match stored.
 getSignInfo= () =>{
 $("#sign-in-form").on("click","#sign-in-button",
     function() {
@@ -72,26 +72,22 @@ $("#sign-in-form").on("click","#sign-in-button",
 }
 // sign up form 
 signUpInfo = () =>{
-    $("#sign-up-form").on("click", "#sign-up-button", function () {
-      if ($("#password-first").val() === $("#check-password").val()) {
-        $("#sign-up-form").submit(function (prevent) {
-          prevent.preventDefault();
-          $("#sign-up-form").find("#sign-up-button").attr("id", "continue-button");
-          $("#sign-up-form").find("#continue-button").text("Continue");
-        });
-      } else {
-        $("#sign-up-form").submit(function (prevent) {
-          prevent.preventDefault();
-          $("#sign-up-form").find(".form-error").show();
-        });
-      }
-    });
-    $("#sign-up-form").on("click", "#continue-button", function () {
-      $("#form-container").empty();
-      $("#form-container").append($("#sign-in-temp").html());
-      $(".form-error").hide();
-      ChangeForm();
-      getSignInfo();
-    });
-    
+
+$("#sign-up-form").submit(function(prevent){
+  prevent.preventDefault();
+   if ($("#password-first").val() === $("#check-password").val()) {
+       
+       $("#form-container").empty();
+       $("#form-container").append($("#sign-in-temp").html());
+       $(".form-error").hide();
+       ChangeForm();
+       getSignInfo();
+   } else {
+       $("#sign-up-form").find(".form-error").show();
+     
+   }
+   
+})
+     
+  
 }

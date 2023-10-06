@@ -1,6 +1,20 @@
 const youTubeURL = "https://www.youtube.com/embed/"
 const test = "dfeUzm6KF4g";
 let userName
+
+$.ajax({
+  type: "GET",
+  url: "http://www.omdbapi.com/?i=tt3896198&apikey=d7afefce",
+  success: function (data) {
+    movie = data;
+  },
+}).done(function () {
+    moviePoster = movie.Poster;
+    checkMovieData = JSON.stringify(movie);
+    console.log(moviePoster);
+});
+
+
 /*$.ajax({
   type: "GET",
   url: "https://api.themoviedb.org/3/movie/550?api_key=b73d45f4cde3956c846eaca8f95d17d8&append_to_response=videos",
