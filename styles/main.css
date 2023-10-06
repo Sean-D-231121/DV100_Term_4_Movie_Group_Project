@@ -1,3 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:ital,wght@0,700;1,400&family=Pacifico&display=swap');
+
 /* font-family: 'Bebas Neue', sans-serif; 
+font-family: 'Noto Sans', sans-serif;
 font-family: 'Pacifico', cursive;*/
+h1{
+     font-family: 'Pacifico', cursive;
+     color: #EEAD1D;
+}
+h2{
+   font-family: 'Noto Sans', sans-serif;
+   font-weight: bold; 
+}
+h3{
+    font-family: 'Noto Sans', sans-serif;
+   font-weight: 400; 
+}
+*{
+   font-family: 'Noto Sans', sans-serif;  
+   font-weight: 400;
+   margin: 0;
+   padding: 0;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Sign in page */
+.sign-in-up-body{
+    background-image: url("../assets/Curtains-sign-up.png");
+    background-position: center;
+    background-size:cover;
+    height: 100vh;
+    
+}
+.container{
+    height: 100%;
+    
+}
+.sign-in-box{
+    background-color: black;
+    padding: 50px;
+    border-radius: 8px;
+}
+.changeForm{
+    color: white;
+}
+.changeForm:hover{
+    color: #EEAD1D;
+}
+.sign-in-paragraph{
+    color: white;
+}
+.form-error{
+    color:#EEAD1D;
+}
+.overlay{
+    width: 100%;
+    height: inherit;
+    background-color: rgba(0,0,0, 0.5);
+}

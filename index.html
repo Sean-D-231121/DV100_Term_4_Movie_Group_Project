@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,36 +10,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
      <link rel="stylesheet" href="./styles/main.css" />
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Retroverse</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="./pages/Home-page.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./pages/Library-page.html">Library</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./pages/Watchlist.html">Watchlist</a>
-        </li>
-        
-      </ul>
-      <div class="navbar-text">
-        <img src="" alt="">
-        <h4>Username</h4>
-      </div>
+  <body class="sign-in-up-body">
+    <div class="overlay ">
+    <div class="container d-flex align-items-center justify-content-center" id="form-container">
+    
+    <!-- <iframe class = "video-example"width="560" height="315" src="https://www.youtube.com/embed/FlFyrOEz2S4?si=1jLIJl1-PWNhsO7F"  title="YouTube video player" frameborder="0" allow="accelerometer;clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+  
     </div>
-  </div>
-</nav>
-    <h1 class="Heading">Hello, world!</h1>
+    </div>
+    <template id="sign-in-temp">
+      <form id="sign-in-form" class="col-12 col-md-6 sign-in-box d-flex align-content-center flex-column">
+       <h1 class="text-center mb-4">Sign in</h1>
+      <div class="mb-3">
+  <input type="text" class="form-control" id="sign-in-user" placeholder="Username" required>
+</div>
+<div class="mb-3">
+  <input type="password" class="form-control" id="password" placeholder="Password" required>
+</div>
+<p class="form-error">The entered Username or Password is incorrect!</p>
+<p class="sign-in-paragraph">Don't have an account? Sign Up <a class="changeForm" value="sign-in">here</a>.</p>
+<button class="btn btn-warning" id="sign-in-button">Sign in</button>
+</form>
+ </template>  
+ <template id="sign-up-temp">
+  <form id="sign-up-form" class="col-12 col-md-6 sign-in-box d-flex align-content-center flex-column">
+       <h1 class="text-center mb-3">Sign up</h1>
+       <div class="mb-3">
+  <input type="text" class="form-control" id="nameSurname" placeholder="Name and Surname"  required>
+</div>
+  <div class="mb-3">
+  <input type="text" class="form-control" id="sign-in" placeholder="Username" required>
+</div>
+<div class="mb-3">
+  <input type="email" class="form-control" id="email" placeholder="email" required>
+</div>
+<div class="mb-3">
+  <input type="password" class="form-control" id="password-first" placeholder="Password" required>
+</div>
+<div class="mb-3">
+  <input type="password" class="form-control" id="check-password" placeholder=" Re-enter Password" required>
+</div>
+<p class="form-error">Passwords don't match!</p>
+<p class="sign-in-paragraph">Already have an account? Sign in <a class="changeForm" value="sign-up">here</a>.</p>
+<button class="btn btn-warning" type="submit" id="sign-up-button" >Sign up</button>
+</form>
+    </template>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/sign-in.js"></script>
   </body>
 </html>

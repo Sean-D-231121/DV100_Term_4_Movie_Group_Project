@@ -1,5 +1,18 @@
+const youTubeURL = "https://www.youtube.com/embed/"
+const test = "dfeUzm6KF4g";
 
-
+/*$.ajax({
+  type: "GET",
+  url: "https://api.themoviedb.org/3/movie/550?api_key=b73d45f4cde3956c846eaca8f95d17d8&append_to_response=videos",
+  
+  success: function (data) {
+    movie = data;
+    console.log(movie);
+  },
+}).done(function () {
+  console.log(youTubeURL + movie.videos.results[0].key);
+  $(".video-example").attr("src", youTubeURL + movie.videos.results[0].key);
+});*/
 $(document).ready(function(){
     ChangeH1();
 })
