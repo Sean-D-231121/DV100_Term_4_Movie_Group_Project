@@ -1,6 +1,6 @@
 const youTubeURL = "https://www.youtube.com/embed/"
 const test = "dfeUzm6KF4g";
-
+let userName
 /*$.ajax({
   type: "GET",
   url: "https://api.themoviedb.org/3/movie/550?api_key=b73d45f4cde3956c846eaca8f95d17d8&append_to_response=videos",
@@ -15,7 +15,17 @@ const test = "dfeUzm6KF4g";
 });*/
 $(document).ready(function(){
     ChangeH1();
+    
+    $(window).on("load", function () {
+      userName = JSON.parse(localStorage.getItem("Username"));
+      console.log(userName);
+      showUserName();
+    });
 })
+
+showUserName = () => {
+  $(".username").text(userName)
+}
 ChangeH1 = () =>{
 $(".Heading").hover( function () {
   $(this).text("Jquery works");
