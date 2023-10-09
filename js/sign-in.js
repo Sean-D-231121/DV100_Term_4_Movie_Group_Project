@@ -14,9 +14,8 @@ checkForUsername = () =>{
 }
 // Switches between sign in and sign up forms with animation
 ChangeForm = () =>{
-
     $("#form-container").on("click", ".changeForm", function(){
-       
+      //  switches to sign up form
         if($(this).attr("value") === "sign-in"){
         $("#form-container").empty();
         $("#form-container").append($("#sign-up-temp").html()); 
@@ -29,6 +28,7 @@ ChangeForm = () =>{
    
         }
         else{
+          // Switches to sign in form
            $("#form-container").empty();
            $("#form-container").append($("#sign-in-temp").html()); 
            $(".form-error").hide();  
@@ -70,7 +70,7 @@ $("#sign-in-form").on("click","#sign-in-button",
 }
 )
 }
-// sign up form 
+// sign up form submitting
 signUpInfo = () =>{
 
 $("#sign-up-form").submit(function(prevent){
