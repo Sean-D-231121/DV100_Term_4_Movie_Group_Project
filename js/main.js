@@ -16,14 +16,14 @@ $.ajax({
 
 $(document).ready(function(){
     ChangeH1();
-    
+    // Get username when a new page loads
     $(window).on("load", function () {
       userName = JSON.parse(localStorage.getItem("Username"));
       console.log(userName);
       showUserName();
     });
 })
-
+// Stores username on right side of navbar
 showUserName = () => {
   $(".username").text(userName)
 }
