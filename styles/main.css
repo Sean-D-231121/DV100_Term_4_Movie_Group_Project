@@ -243,3 +243,34 @@ h1 {
     border-radius: 25%;
     border: none;
 }
+
+
+
+
+/* -------------------------------------------------- */
+/* Watch List Page */
+/* -------------------------------------------------- */
+
+.table button {
+    width: 203px;
+    height: 50px;
+    background-color: #EEAD1D;
+    color: #ffffff;
+    border: solid 2px #EEAD1D;
+    border-radius: 5px;
+    margin-top: 70px;
+}
+
+.table button:hover {
+    width: 203px;
+    background-color: #ffffff;
+    color: #EEAD1D;
+    border: solid 2px #EEAD1D;
+    border-radius: 5px;
+    margin-top: 70px;
+}
+
+.table{
+    --bs-table-bg: #961503;
+    --bs-table-color: #ffffff;
+}
