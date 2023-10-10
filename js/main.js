@@ -27,10 +27,10 @@ $(document).ready(function(){
 showUserName = () => {
   $(".username").text(userName)
 }
-//ChangeH1 = () =>{
+ChangeH1 = () =>{
 $(".Heading").hover( function () {
   $(this).text("Jquery works");
 }, function (){
-    $(this).text("POPULAR PICKS");
+    $(this).text("POPULAR");
 });
 
