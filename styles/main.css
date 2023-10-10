@@ -152,6 +152,7 @@ h1 {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
 }
 
 /* Style for movie poster image */
@@ -176,15 +177,30 @@ h1 {
     border-radius: 50%; /* Add round border to the buttons */
     width: 40px; /* Adjust button width for a circular appearance */
     height: 40px; /* Adjust button height for a circular appearance */
+    transition: transform 0.3s;
 }
 
+/* Add hover effect for movie cards */
+.movie-card:hover {
+    box-shadow: 0px 5px 15px rgba(238, 173, 29);
+}
+
+/* Add hover effect for icon buttons */
+.icon-buttons button:hover {
+    transform: scale(1.2); /* Increase size on hover */
+    filter: invert(100%);
+}
 
 .info-button {
-    color: #EEAD1D; /* Blue color for info button */
+    color: #EEAD1D; /* Yellow color for info button */
+    margin-right: 100px;
+   
 }
 
 .wishlist-button {
-    color: #EEAD1D; 
+    color: #EEAD1D; /* Yellow color for wishlist button */
+    margin-left: 100px;
+    
 }
 
 /* Center movie cards horizontally */
