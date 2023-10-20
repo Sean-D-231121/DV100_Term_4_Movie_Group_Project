@@ -27,12 +27,17 @@ $(document).ready(function () {
   getMovieInfo();
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
-    console.log(userName);
+    showUserName();
   });
-  showUserName();
+  
 });
 $(document).ajaxComplete(function () {
   sortMovieData();
+  $(".movie-card").on("click", "#info-url", function () {
+    window.location.href =
+      "Individual-movie-page.html?id=" +
+      $(this).closest("#movie-card-id").attr("value");
+  });
 });
 // Get data from OMDB api
 getMovieInfo = () => {
@@ -51,11 +56,14 @@ getMovieInfo = () => {
       movieTitle = movie.Title;
 
       showMovieInfo.push({
+        movieId: movieInfo,
         showMovieTitle: movieTitle,
         showMovieImage: moviePoster,
       });
+      
     });
   }
+  console.log(showMovieInfo)
 };
 // Make cards for movies
 setMovieData = (displayCards) => {
@@ -68,8 +76,13 @@ setMovieData = (displayCards) => {
     currentCard
       .find("#movie-image")
       .attr("src", displayCards[i].showMovieImage);
+      currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
+      
+  
   }
+  
 };
+
 // Sorter for movies
 sortMovieData = () => {
   sortMovies = showMovieInfo.sort((a, b) => {
