@@ -103,3 +103,14 @@ showUserName = () => {
   $(".username").text(userName);
 };
 
+
+
+
+
+$(document).ready(function() {
+  // Add a click event listener to all elements with the class "remove-btn"
+  $(".remove-btn").click(function() {
+      // Find the parent row (tr) and remove it
+      $(this).closest("tr").remove();
+  });
+});

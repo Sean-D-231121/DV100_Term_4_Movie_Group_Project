@@ -24,7 +24,7 @@
       <div class="container-fluid">
 
         <a class="navbar-brand" href="#">
-          <img src="..//assets/navbar logo.png" alt="navbar logo" style="width: 150px; height: 60px; margin-top: -15px;">
+          <img src="..//assets/navbar logo.png" alt="navbar logo" class="img-fluid" style="max-height: 60px;">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
 
     </nav>
 
-    <h1 class="Heading">Movie Watch List</h1>
+    <h1 class="Heading text-center">Movie Watch List</h1>
 
 
 
@@ -66,48 +66,52 @@
     <!-- Table -->
     <!-- -------------------------------------------------- -->
 
-    <div class="table-container" style="width: 1162px; margin: auto; margin-bottom: 50px;">
-      
-      <table class="table" style="text-align: center;">
+    <div class="table-container mx-auto my-5">
+      <div class="table-responsive"> <!-- Add this class to make the table scroll on smaller screens -->
+        <table class="table" style="text-align: center;">
 
-        <!-- Table Headers -->
-        <thead>
-          <tr>
-            <th scope="col">Poster</th>
-            <th scope="col">Movie Title</th>
-            <th scope="col">Trailer</th>
-            <th scope="col">Remove</th>
-          </tr>
-        </thead>
+          <!-- Table Headers -->
+          <thead>
+            <tr>
+              <th scope="col">Poster</th>
+              <th scope="col">Movie Title</th>
+              <th scope="col">Trailer</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
 
-        <!-- Table Content -->
-        <tbody>
+          <!-- Table Content -->
+          <tbody>
+            <tr class="tableRow">
+              <td scope="row">
+                <img src="..//assets/retro movie.png" alt="navbar logo" class="img-fluid" style="max-height: 190px;">
+              </td>
+              <td>Back To The Future</td>
+              <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
+              <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
+            </tr>
 
-          <tr class="tableRow" id="tableRow">
-            <td scope="row"><img src="..//assets/retro movie.png" alt="navbar logo" style="width: 128px; height: 190px; margin: 10px;"></td>
-            <td style="padding-top: 90px;">Back To The Future</td>
-            <td><button class="trailer-btn" id="trailerButton">Watch Trailer</button></td>
-            <td><button class="remove-btn" id="removeButton">Remove</button></td>
-          </tr>
+            <tr class="tableRow">
+              <td scope="row">
+                <img src="..//assets/retro movie.png" alt="navbar logo" class="img-fluid" style="max-height: 190px;">
+              </td>
+              <td>Back To The Future</td>
+              <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
+              <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
+            </tr>
+            
+            <tr class="tableRow">
+              <td scope="row">
+                <img src="..//assets/retro movie.png" alt="navbar logo" class="img-fluid" style="max-height: 190px;">
+              </td>
+              <td>Back To The Future</td>
+              <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
+              <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
+            </tr>
 
-          <tr class="tableRow" id="tableRow">
-            <td scope="row"><img src="..//assets/retro movie.png" alt="navbar logo" style="width: 128px; height: 190px; margin: 10px;"></td>
-            <td style="padding-top: 90px;">Back To The Future</td>
-            <td><button class="trailer-btn" id="trailerButton">Watch Trailer</button></td>
-            <td><button class="remove-btn" id="removeButton">Remove</button></td>
-          </tr>
-
-          <tr class="tableRow" id="tableRow">
-            <td scope="row"><img src="..//assets/retro movie.png" alt="navbar logo" style="width: 128px; height: 190px; margin: 10px;"></td>
-            <td style="padding-top: 90px;">Back To The Future</td>
-            <td><button class="trailer-btn" id="trailerButton">Watch Trailer</button></td>
-            <td><button class="remove-btn" id="removeButton">Remove</button></td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
+          </tbody>
+        </table>
+      </div>
     </div>
 
 
