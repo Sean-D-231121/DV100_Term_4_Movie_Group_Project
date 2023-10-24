@@ -3,6 +3,10 @@
 /* font-family: 'Bebas Neue', sans-serif; 
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Pacifico', cursive;*/
+
+.navbar{
+    z-index: 2
+}
 h1{
      font-family: 'Pacifico', cursive;
      color: #EEAD1D;
@@ -56,11 +60,11 @@ h3{
     color: white;
 }
 .form-error{
-    color:#EEAD1D;
+    color:#961503
 }
 .overlay{
     width: 100%;
-    height: inherit;
+    height: 100vh;
     background-color: rgba(0,0,0, 0.5);
 }
 .button-style{
@@ -78,18 +82,45 @@ h3{
     width: 40%;
     height: 40%;
 }
-
+.form-control.is-valid, .was-validated .form-control:valid {
+    border-color: #EEAD1D;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23EEAD1D' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}.form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+    border-color: #EEAD1D;
+    box-shadow: none;
+   
+}
+.password-problem{
+    border-color: var(--bs-form-invalid-border-color) !important;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.password-problem:focus{
+    border-color: var(--bs-form-invalid-border-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb),.25) !important;
+}
+/* ------------------------------------------ */
+/* Library page */
 
 .body{
     background-color: #091509;
 }
-/*Filter CSS library page*/
+ 
+
+/* Filter CSS library page */
 .lightbulb-button {
-    border: 2px dotted #f5dc54; 
-    border-radius: 5px; 
+    border: 2px dotted #f5dc54;
+    border-radius: 5px;
     background-color: #961503;
     color: #EEAD1D;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Reduced horizontal padding */
     margin: 5px;
     margin-top: -10px;
     font-weight: bold;
@@ -99,11 +130,54 @@ h3{
     transition: border-color 0.3s, color 0.3s, transform 0.3s;
 }
 
+
 .lightbulb-button:hover {
     border-color: #f5dc54; 
     color: #ffff; 
     transform: scale(1.05); 
 }
+/* Add styles to hide dropdown options by default and show them when the parent is clicked */
+.lightbulb-options {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-width: 160px;
+  }
+  
+  .lightbulb-dropdown:hover .lightbulb-options {
+    display: block;
+  }
+  
+  .dropdown-option {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-option:hover {
+    background-color: #f5dc54;
+    color: #000;
+  }
+  
+  @media (max-width: 576px) {
+    .row.justify-content-center {
+        flex-direction: column; /* Change to a column layout for smaller screens */
+    }
+
+    .col-md-2 {
+        flex-basis: 50%; /* Make each column take up 50% of the container width */
+    }
+
+    .lightbulb-button {
+        padding: 8px 10px; /* Adjust padding for smaller screens */
+        font-size: 14px; /* Adjust font size for smaller screens */
+        margin: 2px; /* Adjust margin for smaller screens */
+        margin-top: -10px;
+    }
+}  
 
  /*navbar text color */
  .navbar-nav .nav-link {
@@ -152,6 +226,7 @@ h1 {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
 }
 
 /* Style for movie poster image */
@@ -176,15 +251,30 @@ h1 {
     border-radius: 50%; /* Add round border to the buttons */
     width: 40px; /* Adjust button width for a circular appearance */
     height: 40px; /* Adjust button height for a circular appearance */
+    transition: transform 0.3s;
 }
 
+/* Add hover effect for movie cards */
+.movie-card:hover {
+    box-shadow: 0px 5px 15px rgba(238, 173, 29);
+}
+
+/* Add hover effect for icon buttons */
+.icon-buttons button:hover {
+    transform: scale(1.2); /* Increase size on hover */
+    filter: invert(100%);
+}
 
 .info-button {
-    color: #EEAD1D; /* Blue color for info button */
+    color: #EEAD1D; /* Yellow color for info button */
+    margin-right: 100px;
+   
 }
 
 .wishlist-button {
-    color: #EEAD1D; 
+    color: #EEAD1D; /* Yellow color for wishlist button */
+    margin-left: 100px;
+    
 }
 
 /* Center movie cards horizontally */
@@ -209,6 +299,12 @@ h1 {
     text-align: center;
     font-family: 'Pacifico', cursive;
 }
+@media (max-width: 576px) { 
+   .movie-card{
+    width: 100%;
+   }
+ }
+
 
 /*individiual move page*/
 .movie{
@@ -227,3 +323,60 @@ h1 {
     border-radius: 25%;
     border: none;
 }
+
+
+
+
+/* -------------------------------------------------- */
+/* Watch List Page */
+/* -------------------------------------------------- */
+
+.table button {
+    width: 203px;
+    height: 50px;
+    background-color: #EEAD1D;
+    color: #ffffff;
+    border: solid 2px #EEAD1D;
+    border-radius: 5px;
+    margin-top: 70px;
+}
+
+.table button:hover {
+    width: 203px;
+    background-color: #ffffff;
+    color: #EEAD1D;
+    border: solid 2px #EEAD1D;
+    border-radius: 5px;
+    margin-top: 70px;
+}
+
+.table{
+    --bs-table-bg: #961503;
+    --bs-table-color: #ffffff;
+}
+
+.genre-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .genre-text {
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .genre-box, .year-box, .imdb-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .genre-text, .year-text, .imdb-text {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  
