@@ -3,6 +3,7 @@
 /* font-family: 'Bebas Neue', sans-serif; 
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Pacifico', cursive;*/
+
 .navbar{
     z-index: 2
 }
@@ -107,17 +108,19 @@ h3{
 }
 /* ------------------------------------------ */
 /* Library page */
+
 .body{
     background-color: #091509;
 }
  
-/*Filter CSS library page*/
+
+/* Filter CSS library page */
 .lightbulb-button {
-    border: 2px dotted #f5dc54; 
-    border-radius: 5px; 
+    border: 2px dotted #f5dc54;
+    border-radius: 5px;
     background-color: #961503;
     color: #EEAD1D;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Reduced horizontal padding */
     margin: 5px;
     margin-top: -10px;
     font-weight: bold;
@@ -133,6 +136,48 @@ h3{
     color: #ffff; 
     transform: scale(1.05); 
 }
+/* Add styles to hide dropdown options by default and show them when the parent is clicked */
+.lightbulb-options {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-width: 160px;
+  }
+  
+  .lightbulb-dropdown:hover .lightbulb-options {
+    display: block;
+  }
+  
+  .dropdown-option {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-option:hover {
+    background-color: #f5dc54;
+    color: #000;
+  }
+  
+  @media (max-width: 576px) {
+    .row.justify-content-center {
+        flex-direction: column; /* Change to a column layout for smaller screens */
+    }
+
+    .col-md-2 {
+        flex-basis: 50%; /* Make each column take up 50% of the container width */
+    }
+
+    .lightbulb-button {
+        padding: 8px 10px; /* Adjust padding for smaller screens */
+        font-size: 14px; /* Adjust font size for smaller screens */
+        margin: 2px; /* Adjust margin for smaller screens */
+        margin-top: -10px;
+    }
+}  
 
  /*navbar text color */
  .navbar-nav .nav-link {
@@ -309,3 +354,29 @@ h1 {
     --bs-table-bg: #961503;
     --bs-table-color: #ffffff;
 }
+
+.genre-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .genre-text {
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .genre-box, .year-box, .imdb-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .genre-text, .year-text, .imdb-text {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  

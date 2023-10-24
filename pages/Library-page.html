@@ -52,17 +52,42 @@
 <!-------------------------------------------------------------------------------------------->
 <!--- Filters --->
 <div class="container mt-5">
-  <div class="row">
-      <div class="col-md-12 text-center">
-          <!-- Lightbulb filter buttons -->
-          <a href="#" class="lightbulb-button" value="All-Movies">All Movies</a>
-          <a href="#" class="lightbulb-button">Genre</a>
-          <a href="#" class="lightbulb-button">Year</a>
-          <a href="#" class="lightbulb-button">IMDB Score</a>
+  <div class="row justify-content-center">
+    <div class="col-md-2 text-center">
+      <a href="#" class="lightbulb-button" value="All-Movies" id="filter-all-movies">All Movies</a>
+    </div>
+    <div class="col-md-2 text-center">
+      <div class="lightbulb-dropdown">
+        <a href="#" class="lightbulb-button" id="filter-genre">Genre</a>
+        <div class="lightbulb-options dropdown-menu"> <!-- Added 'dropdown-menu' class -->
+          <a href="#" class="dropdown-option" data-filter="All-Genres" id="filter-all-genres">All Genres</a>
+          <a href="#" class="dropdown-option" data-filter="Action" id="filter-action">Action</a>
+          <a href="#" class="dropdown-option" data-filter="Comedy" id="filter-comedy">Comedy</a>
+          <a href="#" class="dropdown-option" data-filter="Drama" id="filter-drama">Drama</a>
+          <a href="#" class="dropdown-option" data-filter="Sci-Fi" id="filter-sci-fi">Sci-Fi</a>
+        </div>
       </div>
+    </div>
+    <div class="col-md-2 text-center">
+      <div class="lightbulb-dropdown">
+        <a href="#" class="lightbulb-button" id="filter-year">Year</a>
+        <div class="lightbulb-options dropdown-menu"> <!-- Added 'dropdown-menu' class -->
+          <a href="#" class="dropdown-option" data-filter="Oldest-Newest" id="filter-oldest-newest">Oldest to Newest</a>
+          <a href="#" class="dropdown-option" data-filter="Newest-Oldest" id="filter-newest-oldest">Newest to Oldest</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 text-center">
+      <div class="lightbulb-dropdown">
+        <a href="#" class="lightbulb-button" id="filter-imdb-score">IMDB Score</a>
+        <div class="lightbulb-options dropdown-menu"> <!-- Added 'dropdown-menu' class -->
+          <a href="#" class="dropdown-option" data-filter="Best-Worst" id="filter-best-worst">Best to Worst Score</a>
+          <a href="#" class="dropdown-option" data-filter="Worst-Best" id="filter-worst-best">Worst to Best Score</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <!-------------------------------------------------------------------------------------------->
 <!--- 28 Movie cards --->
 <div class="container mt-5 justify-content-sm-center align-content-center">
@@ -76,60 +101,82 @@
 <!--- Footer --->
 <footer class="container-fluid" style="background-color: #961503; border: 2px dotted yellow;">
   <div class="container">
-      <div class="row">
-          <!-- Smaller Column (col-md-4) -->
-          <div class="col-md-4 text-light py-4">
-              <h1 style="text-align: left;">Retroverse</h1>
-              <p>&copy; 2023 Retroverse</p>
-          </div>
-
-          <!-- Larger Column (col-md-8) -->
-          <div class="col-md-8 text-light py-4">
-              <h2>Need Help?</h2>
-              <p>If you have any questions or need assistance, please fill out the form below:</p>
-              <form>
-                  <div class="row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="name" class="text-light">Name</label>
-                              <input type="text" class="form-control" id="name" placeholder="Your Name">
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="surname" class="text-light">Surname</label>
-                              <input type="text" class="form-control" id="surname" placeholder="Your Surname">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="email" class="text-light">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="Your Email">
-                  </div>
-                  <button type="submit" class="btn btn-primary" style="background-color: #091509; margin-top: 10px;">Submit</button>
-              </form>
-          </div>
+    <div class="row">
+      <!-- Smaller Column (col-md-4) -->
+      <div class="col-md-4 text-light py-4">
+        <h1 style="text-align: left;">Retroverse</h1>
+        <p>&copy; 2023 Retroverse</p>
       </div>
+
+      <!-- Larger Column (col-md-8) -->
+      <div class="col-md-8 text-light py-4">
+        <h2>Need Help?</h2>
+        <p>If you have any questions or need assistance, please fill out the form below:</p>
+        <form id="contactForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name" class="text-light">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                <div class="invalid-feedback" style="color: yellow;">
+                  Please enter your name.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="surname" class="text-light">Surname</label>
+                <input type="text" class="form-control" id="surname" name="surname" placeholder="Your Surname" required>
+                <div class="invalid-feedback" style="color: yellow;">
+                  Please enter your surname.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="text-light">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+            <div class="invalid-feedback" style="color: yellow;">
+              Please enter a valid email address.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="background-color: #091509; margin-top: 10px;">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
 </footer>
+
 <template id="library-card-temp">
-   <div class=" col-12 col-sm-6 col-md-4 col-lg-3 " >
-        <div class="movie-card col-12 col-sm-6 col-md-4 col-lg-3" id="movie-card-id" value="Hello">
-            <img src="../assets/movie poster-rocky horror show.jpg" id="movie-image" alt="Movie Poster">
-            <h2 class="movie-title" id="movieTitle">The Rocky Horror Picture Show</h2>
-            <div class="icon-buttons">
-              <a>
-                <button class="info-button" id="info-url">
-                  <img src="../assets/info.png" alt="info button">
-                </button>
-              </a>
-                <button class="wishlist-button">
-                  <img src="../assets/heart.png" alt="wishlist button">
-                </button>
-            </div>
-        </div>
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="movie-card" id="movie-card-id" value="Hello">
+      <img src="../assets/movie poster-rocky horror show.jpg" id="movie-image" alt="Movie Poster">
+      <h2 class="movie-title" id="movieTitle">The Rocky Horror Picture Show</h2>
+      <div class="genre-box">
+        <span class="genre-text" id="genreText">Genre</span>
       </div>
+      <div class="year-box">
+        <span class="genre-text" id="yearText">Year</span>
+      </div>
+      <div class="imdb-box">
+        <span class="genre-text" id="imdbText">IMDb</span>
+        <span class="star">★</span>
+      </div>
+      <div class="icon-buttons">
+        <a>
+          <button class="info-button" id="info-url">
+            <img src="../assets/info.256x256.png" alt="info button">
+          </button>
+        </a>
+        <button class="wishlist-button">
+          <img src="../assets/plus-circle.256x256.png" alt="wishlist button">
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="../js/library.js" ></script>
