@@ -18,6 +18,76 @@ const movieInformation = [
   {
     imdbId: "tt0096895",
   },
+  {  
+    imdbId: "tt0068646",
+  },
+  {  
+    imdbId: "tt0137523",
+  },
+  {  
+  imdbId: "tt0114369",
+  },
+  {  
+    imdbId: "tt0816692",
+  },
+  {  
+    imdbId: "tt0120689",
+  },
+  {  
+    imdbId: "tt0088763",
+  },
+  {  
+    imdbId: "tt0110357",
+  },
+  {  
+    imdbId: "tt15398776",
+  },
+  {  
+    imdbId: "tt0078748",
+  },
+  {  
+    imdbId: "tt0910970",
+  },
+  {  
+    imdbId: "tt0045152",
+  },
+  {  
+    imdbId: "tt0056592",
+  },
+  {  
+    imdbId: "tt1745960",
+  },
+  {  
+    imdbId: "tt0266697",
+  },
+  {  
+    imdbId: "tt1131734",
+  },
+  {  
+    imdbId: "tt0266543",
+  },
+  {  
+    imdbId: "tt5726616",
+  },
+  {  
+    imdbId: "tt1049413",
+  },
+  {  
+    imdbId: "tt3281548",
+  },
+  {  
+    imdbId: "tt4925292",
+  },
+  {  
+    imdbId: "tt13274016",
+  },
+  {  
+    imdbId: "tt3758542",
+  },
+  {  
+    imdbId: "tt0110912",
+  },
+
 ];
 let showMovieInfo = [];
 let sortMovies = [];
@@ -51,20 +121,20 @@ getMovieInfo = () => {
       },
     }).done(function () {
       moviePoster = movie.Poster;
-      checkMovieData = JSON.stringify(movie);
-
       movieTitle = movie.Title;
+      movieGenre = movie.Genre; // Get the genre information
 
       showMovieInfo.push({
         movieId: movieInfo,
         showMovieTitle: movieTitle,
         showMovieImage: moviePoster,
+        showMovieGenre: movieGenre, // Store the genre information
       });
-      
     });
   }
-  console.log(showMovieInfo)
+  console.log(showMovieInfo);
 };
+
 // Make cards for movies
 setMovieData = (displayCards) => {
   $("#library-cards-container").empty();
@@ -73,15 +143,12 @@ setMovieData = (displayCards) => {
 
     let currentCard = $("#library-cards-container").children().eq(i);
     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
-    currentCard
-      .find("#movie-image")
-      .attr("src", displayCards[i].showMovieImage);
-      currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
-      
-  
+    currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
+    currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
   }
-  
 };
+
 
 // Sorter for movies
 sortMovieData = () => {
@@ -103,3 +170,87 @@ showUserName = () => {
   $(".username").text(userName);
 };
 
+
+//FILTERS JAVASCRIPT
+$(document).ready(function () {
+  // Initially, show all movies
+  setMovieData(showMovieInfo);
+
+  // Click handler for "All Movies"
+  $("#filter-all-movies").on("click", function () {
+    getFilter = "allMovies"; // Reset the filter option to show all movies
+    setMovieData(sortMovies);
+  });
+
+  // Click handlers for "Genre" filter options
+  $("#filter-all-genres").on("click", function () {
+    filterMovies("All-Genres");
+  });
+
+  $("#filter-action").on("click", function () {
+    filterMovies("Action");
+  });
+
+  $("#filter-comedy").on("click", function () {
+    filterMovies("Comedy");
+  });
+
+  $("#filter-drama").on("click", function () {
+    filterMovies("Drama");
+  });
+
+  $("#filter-sci-fi").on("click", function () {
+    filterMovies("Sci-Fi");
+  });
+
+  // Click handlers for "Year" filter options
+  $("#filter-oldest-newest").on("click", function () {
+    filterMovies("Oldest-Newest");
+  });
+
+  $("#filter-newest-oldest").on("click", function () {
+    filterMovies("Newest-Oldest");
+  });
+
+  // Click handlers for "IMDB Score" filter options
+  $("#filter-best-worst").on("click", function () {
+    filterMovies("Best-Worst");
+  });
+
+  $("#filter-worst-best").on("click", function () {
+    filterMovies("Worst-Best");
+  });
+
+  // Function to apply the filter to movie cards
+  function filterMovies(filter) {
+    const filteredMovies = showMovieInfo.filter((movie) => {
+      if (filter === "All-Genres") {
+        return true; // Show all movies
+      } else if (filter === "All-Movies") {
+        return true; // Show all movies
+      } else if (filter === "Best-Worst") {
+        return true; // Implement sorting from best to worst IMDb score
+      } else if (filter === "Worst-Best") {
+        return true; // Implement sorting from worst to best IMDb score
+      } else if (filter === "Oldest-Newest") {
+        return true; // Implement sorting from oldest to newest year
+      } else if (filter === "Newest-Oldest") {
+        return true; // Implement sorting from newest to oldest year
+      } else {
+        // Implement genre filtering
+        return movie.showMovieGenre.includes(filter);
+      }
+    });
+    setMovieData(filteredMovies);
+  }
+});
+
+
+
+$(document).ready(function() {
+  // Add a click event listener to all elements with the class "remove-btn"
+  $(".remove-btn").click(function() {
+      // Find the parent row (tr) and remove it
+      $(this).closest("tr").remove();
+  });
+});
