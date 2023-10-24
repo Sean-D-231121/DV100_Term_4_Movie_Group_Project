@@ -105,19 +105,27 @@ $("#sign-up-form").submit(function(event){
   event.preventDefault();
   if (this.checkValidity() === false) {
     event.stopPropagation();
+    keyUpSignUp("#password-first", "#check-password");
+    keyUpSignUp("#check-password", "#password-first");
   } else if (
     this.checkValidity() === true &&
-    $("#password-first").val() === $("#check-password").val()
-  ) {
+    $("#password-first").val() === $("#check-password").val()) {
     $("#form-container").empty();
     $("#form-container").append($("#sign-in-temp").html());
     $(".form-error").hide();
+    $("#password-first").removeClass("password-problem");
+    $("#check-password").removeClass("password-problem");
     ChangeForm();
     getSignInfo();
   } else {
     event.stopPropagation();
-    
+    $("#password-first").addClass("password-problem");
+    $("#check-password").addClass("password-problem");
     $("#sign-up-form").find(".form-error").show();
+    keyUpSignUp("#password-first", "#check-password");
+    keyUpSignUp("#check-password", "#password-first");
+
+
     
   }
    $(this).addClass("was-validated");
@@ -125,6 +133,20 @@ $("#sign-up-form").submit(function(event){
 })
      
   
+}
+keyUpSignUp = (inputPassword1, inputPassword2) =>{
+  $(inputPassword1).keyup(function(){
+    if($(inputPassword1).val() === $(inputPassword2).val()){
+      $(inputPassword1).removeClass("password-problem");
+      $(inputPassword2).removeClass("password-problem");
+      $("#sign-up-form").find(".form-error").hide();
+    }
+    else{
+      $(inputPassword1).addClass("password-problem");
+      $(inputPassword2).addClass("password-problem");
+      $("#sign-up-form").find(".form-error").show();
+    }
+  })
 }
 keyUpFunctionsSignIn = () =>{
 onKeyUpError("#sign-in-user", "#password", "#sign-in-form", username, password);
