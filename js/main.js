@@ -164,10 +164,10 @@ setMovieData = (displayCards) => {
      $("#popular-pic").append($("#home-card-temp").html());
 
     let currentCard = $("#popular-pic").children().eq(i);
-    currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
-    currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
-    currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
-     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+    currentCard.find("#movieTitle").text(homeMovies[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", homeMovies[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", homeMovies[i].movieId);
+     currentCard.find("#genreText").text(homeMovies[i].showMovieGenre); // Populate the genre
    }
  };
 
@@ -184,10 +184,10 @@ setMovieData = (displayCards) => {
      $(containerFav).append($("#home-card-temp").html());
 
      let currentCard = $(containerFav).children().eq(i);
-     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
-     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
-     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
-     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+     currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
+     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
+     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieId);
+     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
    }
 
   
