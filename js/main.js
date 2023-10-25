@@ -134,8 +134,7 @@ $(document).ready(function () {
   getTMDBMovieInfo()
    setTimeout(function () {
      joinAPIData();
-     setMovieDataHome(showMovieInfo);
-     setMovieDataFav(showMovieInfo, "#favorites");
+     
      
    }, 300); 
    
@@ -145,12 +144,14 @@ $(document).ready(function () {
     showUserName();
     console.log(userName)
     cardInfoInteraction();
+    
   });
   
 });
 $(document).ajaxComplete(function () {
   sortMovieData();
-  
+  setMovieDataHome(showMovieInfo);
+  setMovieDataFav(showMovieInfo, "#favorites");
 });
 cardInfoInteraction = ()=>{
  $(".movie-card").on("click", "#info-url", function () {
