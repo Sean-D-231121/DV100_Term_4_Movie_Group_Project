@@ -127,6 +127,8 @@ let moviePoster
 let movieTitle 
 let movieGenre 
 let imdbRating
+let favMovies = [];
+
 $(document).ready(function () {
   getMovieInfo();
   getTMDBMovieInfo()
@@ -137,15 +139,20 @@ $(document).ready(function () {
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
+    console.log(userName)
   });
   
 });
 $(document).ajaxComplete(function () {
   sortMovieData();
+  setMovieDataHome(showMovieInfo);
+  setMovieDataFav(showMovieInfo,"#favorites")
+  
   $(".movie-card").on("click", "#info-url", function () {
     window.location.href =
       "Individual-movie-page.html?id=" +
       $(this).closest("#movie-card-id").attr("value");
+      favMovies = showMovieInfo.slice(4, 8);
   });
 
 });
@@ -221,6 +228,7 @@ joinAPIData = () =>{
 // Make cards for movies
 setMovieData = (displayCards) => {
   $("#library-cards-container").empty();
+  
   for (let i = 0; i < displayCards.length; i++) {
     $("#library-cards-container").append($("#library-card-temp").html());
 
@@ -230,6 +238,44 @@ setMovieData = (displayCards) => {
     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieTMDBId);
     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
   }
+};
+
+//  Make cards for home
+ setMovieDataHome = (displayCards) => {
+  let homeMovies = displayCards.slice(0,4)
+  $("#popular-pic").empty();
+   
+   for (let i = 0; i < homeMovies.length; i++) {
+     $("#popular-pic").append($("#home-card-temp").html());
+
+    let currentCard = $("#popular-pic").children().eq(i);
+    currentCard.find("#movieTitle").text(homeMovies[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", homeMovies[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", homeMovies[i].movieId);
+     currentCard.find("#genreText").text(homeMovies[i].showMovieGenre); // Populate the genre
+   }
+ };
+
+
+
+
+ 
+ setMovieDataFav = (displayCards,containerFav) => {
+   let favMovies = displayCards.slice(4, 8);
+   console.log(favMovies);
+   $(containerFav).empty();
+   
+   for (let i = 0; i < favMovies.length; i++) {
+     $(containerFav).append($("#home-card-temp").html());
+
+     let currentCard = $(containerFav).children().eq(i);
+     currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
+     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
+     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieId);
+     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
+   }
+
+  
 };
 
 
@@ -249,7 +295,7 @@ sortMovieData = () => {
 
 // Stores username on right side of navbar
 showUserName = () => {
-  console.log(userName);
+
   $(".username").text(userName);
 };
 

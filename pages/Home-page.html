@@ -39,120 +39,107 @@
     </nav>
 
     <!--slider-->
+    <div id="carouselExample" class="carousel slide" data-bs-theme="dark">
+      <div class="carousel-inner">
 
-    <div id="carouselExample" class="carousel-slide">
-      <img src="../assets/Movie_Screen_1.png" class="home-img">
-      <div class="carousel-inner" style="background-color: #091509">
+          <!--slide one-->
         <div class="carousel-item active">
-          <!-- <img src="..." class="d-block w-100" alt="..."> -->
+        <div class="container">
+              <div class="row full-height">
+                  <div class="col align-self-center pt-5">
+                      <h2>Breakfast at Tiffany's</h2>
+                      <h2>"Breakfast at Tiffany's" is a 1961 romantic comedy featuring Audrey Hepburn as a chic New York socialite in an unconventional love story.</h2>
+                  </div>
+                  <div class="col align-self-end">
+                      <img src="../assets/Breakfast_at_Tiffany's.jpg" class="slider-image">
+                  </div>
+              </div>
         </div>
-        <div class="carousel-item">
-          <!-- <img src="..." class="d-block w-100" alt="..."> -->
         </div>
-        <div class="carousel-item">
-          <!-- <img src="..." class="d-block w-100" alt="..."> -->
+
+        <!--slide two-->
+        <div class="carousel-item active">
+          <div class="container">
+              <div class="row full-height">
+                  <div class="col align-self-center pt-5">
+                      <h2>The God Father</h2>
+                      <h2>"The Godfather" is a legendary crime drama film about the Corleone Mafia family, led by Vito Corleone, and the transformation of his son Michael into a powerful mob boss.</h2>
+                  </div>
+                  <div class="col align-self-end">
+                    <img src="../assets/the god father.jpg" class="slider-image">
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <!--slide three-->
+        <div class="carousel-item active">
+          <div class="container">
+              <div class="row full-height">
+                  <div class="col align-self-center pt-5">
+                      <h2>Jaws</h2>
+                      <h2>"Jaws" is a 1975 thriller film about a giant great white shark terrorizing a coastal town, leading to a hunt to stop it.</h2>
+                  </div>
+                  <div class="col align-self-end">
+                      <img src="../assets/jaws.jpg" class="slider-image">
+                  </div>
+              </div>
+          </div>
         </div>
       </div>
+
+      <!-- carousel controls-->
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+  </div>
 
     <!--movies-->
-    <h1 class="Heading" style="text-align: center; background-color: #091509;  font-family: 'Pacifico', cursive; font-size: 40px;">POPULAR PICKS</h1>
+    <h1 class="Heading">POPULAR PICKS</h1>
     <div class="container mt-5">
-      <div class="row justify-content-center">
-          <div class="col-md-3">
-              <div class="movie-card">
-                  <img src="..//assets/retro movie.png" alt="Movie Poster">
-                  <h2 class="movie-title">Back to the Future</h2> 
-                  <div class="icon-buttons">
-                    <button class="info-button">ℹ️</button>
-                    <button class="wishlist-button">➕</button>
-                </div>        
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="movie-card">
-                <img src="..//assets/retro movie.png" alt="Movie Poster">
-                <h2 class="movie-title">Back to the Future</h2>
-                <div class="icon-buttons">
-                  <button class="info-button">ℹ️</button>
-                  <button class="wishlist-button">➕</button>
-              </div> 
-              </div>
-          </div>
-          <div class="col-md-3">
-            <div class="movie-card">
-              <img src="..//assets/retro movie.png" alt="Movie Poster">
-              <h2 class="movie-title">Back to the Future</h2>
-              <div class="icon-buttons">
-                <button class="info-button">ℹ️</button>
-                <button class="wishlist-button">➕</button>
-            </div> 
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="movie-card">
-            <img src="..//assets/retro movie.png" alt="Movie Poster">
-            <h2 class="movie-title">Back to the Future</h2>
-            <div class="icon-buttons">
-              <button class="info-button">ℹ️</button>
-              <button class="wishlist-button">➕</button>
-          </div> 
-          </div>
-      </div>
+      <div class="row justify-content-center" id="popular-pic"></div>
+          
     </div>
 
-    <h1 class="Heading" style="text-align: center; background-color: #091509; font-family: 'Pacifico', cursive; font-size: 40px;">FAN FAVORITES</h1>
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-          <div class="col-md-3">
-              <div class="movie-card">
-                  <img src="..//assets/retro movie.png" alt="Movie Poster">
-                  <h2 class="movie-title">Back to the Future</h2> 
-                  <div class="icon-buttons">
-                    <button class="info-button">ℹ️</button>
-                    <button class="wishlist-button">➕</button>
-                </div>        
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="movie-card">
-                <img src="..//assets/retro movie.png" alt="Movie Poster">
-                <h2 class="movie-title">Back to the Future</h2>
-                <div class="icon-buttons">
-                  <button class="info-button">ℹ️</button>
-                  <button class="wishlist-button">➕</button>
-                </div> 
-              </div>
-          </div>
-          <div class="col-md-3">
-            <div class="movie-card">
-              <img src="..//assets/retro movie.png" alt="Movie Poster">
-              <h2 class="movie-title">Back to the Future</h2>
-              <div class="icon-buttons">
-                <button class="info-button">ℹ️</button>
-                <button class="wishlist-button">➕</button>
-            </div> 
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="movie-card">
-            <img src="..//assets/retro movie.png" alt="Movie Poster">
-            <h2 class="movie-title">Back to the Future</h2>
-            <div class="icon-buttons">
-              <button class="info-button">ℹ️</button>
-              <button class="wishlist-button">➕</button>
-          </div> 
-          </div>
-      </div>
+    <h1 class="Heading" >FAN FAVORITES</h1>
+    <div class="containerFav mt-5">
+      <div class="row justify-content-center" id="favorites"></div>
+        
     </div>
+
+    <template id="home-card-temp">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="movie-card" id="movie-card-id" value="Hello">
+          <img src="../assets/movie poster-rocky horror show.jpg" id="movie-image" alt="Movie Poster">
+          <h2 class="movie-title" id="movieTitle">The Rocky Horror Picture Show</h2>
+          <div class="genre-box">
+            <span class="genre-text" id="genreText">Genre</span>
+          </div>
+          <div class="year-box">
+            <span class="genre-text" id="yearText">Year</span>
+          </div>
+          <div class="imdb-box">
+            <span class="genre-text" id="imdbText">IMDb</span>
+            <span class="star">★</span>
+          </div>
+          <div class="icon-buttons">
+            <a>
+              <button class="info-button" id="info-url">
+                <img src="../assets/info.256x256.png" alt="info button">
+              </button>
+            </a>
+            <button class="wishlist-button">
+              <img src="../assets/plus-circle.256x256.png" alt="wishlist button">
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
 
     <!--footer-->
 
