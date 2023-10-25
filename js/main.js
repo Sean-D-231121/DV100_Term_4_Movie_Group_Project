@@ -103,6 +103,8 @@ $(document).ready(function () {
 });
 $(document).ajaxComplete(function () {
   sortMovieData();
+  setMovieDataHome(showMovieInfo,"#popular-pic");
+  setMovieDataFav(showMovieInfo,"#favorites")
   $(".movie-card").on("click", "#info-url", function () {
     window.location.href =
       "Individual-movie-page.html?id=" +
@@ -142,6 +144,34 @@ setMovieData = (displayCards) => {
     $("#library-cards-container").append($("#library-card-temp").html());
 
     let currentCard = $("#library-cards-container").children().eq(i);
+    currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
+    currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+  }
+};
+
+// Make cards for home
+setMovieDataHome = (displayCards,container) => {
+  $(container).empty();
+  for (let i = 0; i < 4; i++) {
+    $(container).append($("#home-card-temp").html());
+
+    let currentCard = $(container).children().eq(i);
+    currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
+    currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+  }
+};
+
+// Make cards for home-fav
+setMovieDataFav = (displayCards,containerFav) => {
+  $(containerFav).empty();
+  for (let i = 0; i < 4; i++) {
+    $(containerFav).append($("#home-card-temp").html());
+
+    let currentCard = $(containerFav).children().eq(i);
     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);

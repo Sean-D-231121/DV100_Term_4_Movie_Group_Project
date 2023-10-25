@@ -286,23 +286,7 @@ h1 {
 }
 
 
-/* slider*/
 
-.background-cinema{
-    background-image: url("../assets/Movie_Screen_1.png");
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-
-}
-.movie-slider{
-    height:  70vh;
-    background-image: url("../assets/wide-poster.jpg");
-    background-position: center;
-    background-size:cover;
-    width: 72%;
-    
-}
 
 /*footer*/
 .footer{
@@ -320,23 +304,6 @@ h1 {
  }
 
 
-/*individiual move page*/
-.movie{
-    width: auto;
-    height: 250px;
-}
-
-.p-3{
-    text-align: left;
-}
-
-.btn-sm{
-    width: 150px;
-    height: 50px;
-    background-color: #EEAD1D;
-    border-radius: 25%;
-    border: none;
-}
 
 
 
@@ -392,5 +359,50 @@ h1 {
     font-weight: bold;
     color: #ffffff;
   }
-  
-  
+
+/*individual page*/
+
+  .singel-movie{
+    width: 450px;
+    height: 530px;
+    display: inline-block;
+    color: #ffff;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 20px;    
+    background-color: #961503;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+  }
+
+  .col{
+    width: 250px;
+    height: 250px;
+    float: left;
+  }
+
+.btn-sm{
+    width: 150px;
+    height: 50px;
+    background-color: #EEAD1D;
+    border-radius: 10%;
+    border: none;
+}
+
+/*carousel*/
+
+
+.slider-image{
+    width: 650px;
+    height: 700px;
+
+}
+
+.carousel-item{
+    width: 100%;
+    height: 900px;
+    background-color: #091509;
+    color: #ffffff;
+}
