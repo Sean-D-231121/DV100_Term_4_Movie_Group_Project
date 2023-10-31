@@ -135,13 +135,17 @@ $(document).ready(function () {
 
   setTimeout(function () {
     joinAPIData();
+    addToWishlistFunction();
   }, 300);
-
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
     console.log(userName);
     cardInfoInteraction();
+     let getMoviesWish = JSON.parse(localStorage.getItem("wishlistMovie"));
+     if (getMoviesWish !== null) {
+       retrieveLibraryData();
+     }
   });
 
   $(document).ajaxComplete(function () {
@@ -150,21 +154,31 @@ $(document).ready(function () {
     setMovieDataFav(showMovieInfo, "#favorites");
   });
 
-  // Add click event listeners for elements with class "remove-btn"
-  $(".remove-btn").click(function () {
-    // Find the parent row (tr) and remove it
-    $(this).closest("tr").remove();
-  });
+  
 
+
+
+  
+  
+});
+
+addToWishlistFunction = () => {
   // Add click event listener for "wishlist-button"
   $(".wishlist-button").click(function () {
-    const movieImage = $(this).closest(".movie-card").find("#movie-image").attr("src");
-    const movieTitle = $(this).closest(".movie-card").find("#movieTitle").text();
-
+    const movieImage = $(this)
+      .closest(".movie-card")
+      .find("#movie-image")
+      .attr("src");
+    const movieTitle = $(this)
+      .closest(".movie-card")
+      .find("#movieTitle")
+      .text();
+      console.log(movieTitle);
+      console.log(movieImage);
     // Create an object to store the information
     const movieInfo = {
-        image: movieImage,
-        title: movieTitle,
+      image: movieImage,
+      title: movieTitle,
     };
 
     // Retrieve the existing wishlist from local storage or create an empty array
@@ -178,19 +192,22 @@ $(document).ready(function () {
 
     // Store the JSON string in local storage
     localStorage.setItem("wishlistMovie", wishlistJSON);
-});
+  });
 
-// Retrieve the JSON data from local storage
-const wishlistMovieJSON = localStorage.getItem("wishlistMovie");
+  
+};
+retrieveLibraryData = () =>{
+  // Retrieve the JSON data from local storage
+  const wishlistMovieJSON = localStorage.getItem("wishlistMovie");
 
-// Check if the data exists in local storage
-if (wishlistMovieJSON) {
+  // Check if the data exists in local storage
+  if (wishlistMovieJSON) {
     // Parse the JSON data into a JavaScript array of movies
     const wishlist = JSON.parse(wishlistMovieJSON);
 
     // Loop through the array and display each movie
     wishlist.forEach((movieInfo) => {
-        const newRow = `
+      const newRow = `
             <tr class="tableRow">
               <td scope="row">
                 <img src="${movieInfo.image}" alt="movie poster" class="img-fluid" style="max-height: 190px;">
@@ -201,13 +218,17 @@ if (wishlistMovieJSON) {
             </tr>
         `;
 
-        // Append the new row to the table in your template
-        const table = $("#movie-table-template").contents().find("table");
-        table.find("tbody").append(newRow);
+      // Append the new row to the table in your template
+       $("#table").find("tbody").append(newRow);
     });
-}
-});
+  }
 
+  // Add click event listeners for elements with class "remove-btn"
+  $(".remove-btn").click(function () {
+    // Find the parent row (tr) and remove it
+    $(this).closest("tr").remove();
+  });
+}
 // Function to handle card information interaction
 function cardInfoInteraction() {
   $(".movie-card").on("click", "#info-url", function () {
@@ -279,7 +300,7 @@ function joinAPIData() {
     movie.showTrailerEmbed = getTMDBInfo[i].showTrailerEmbed;
     movie.showTrailerWatch = getTMDBInfo[i].showTrailerWatch;
   }
-  console.log(showMovieInfo);
+  
 }
 
 // Make cards for movies
@@ -317,7 +338,7 @@ function setMovieDataHome(displayCards) {
 // Set cards for favorites
 function setMovieDataFav(displayCards, containerFav) {
   let favMovies = displayCards.slice(4, 8);
-  console.log(favMovies);
+
   $(containerFav).empty();
 
   for (let i = 0; i < favMovies.length; i++) {

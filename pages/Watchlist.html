@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../styles/main.css">
 </head>
 
-<body class="body">
+<body class="body" id="wishlist-page">
 
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg" style="background-color: #091509; margin: auto;">
@@ -43,12 +43,9 @@
     </nav>
 
     <h1 class="Heading text-center">Movie Watch List</h1>
-
-    <!-- Table -->
-    <template id="movie-table-template">
-      <div class="table-container mx-auto my-5">
+    <div class="table-container mx-auto my-5">
         <div class="table-responsive">
-          <table class="table" style="text-align: center;">
+          <table class="table" style="text-align: center;" id="table">
 
             <!-- Table Headers -->
             <thead>
@@ -62,19 +59,15 @@
 
             <!-- Table Content -->
             <tbody>
-              <tr class="tableRow">
-                <td scope="row">
-                  <img src="..//assets/retro movie.png" alt="movie poster" class="img-fluid" style="max-height: 190px;">
-                </td>
-                <td>Back To The Future</td>
-                <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
-                <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
-              </tr>
+             
         
             </tbody>
           </table>
         </div>
       </div>
+    <!-- Table -->
+    <template id="movie-table-template">
+      
     </template>
 
     <!-- Footer -->
