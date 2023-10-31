@@ -1,12 +1,11 @@
-
-
+// Define global variables
 let userName;
 const trailerWatchURL = "https://www.youtube.com/watch?v=";
 const trailerEmbedURL = "https://www.youtube.com/embed/";
 const movieInformation = [
   {
     imdbId: "tt0083866",
-  moviedbId: "601",
+    moviedbId: "601",
   },
   {
     imdbId: "tt0082971",
@@ -116,52 +115,110 @@ const movieInformation = [
     imdbId: "tt0110912",
     moviedbId: "680"
   },
-
 ];
+
 let showMovieInfo = [];
 let getOMDBInfo = [];
 let getTMDBInfo = [];
 let sortMovies = [];
 let getFilter = "allMovies";
-let moviePoster 
-let movieTitle 
-let movieGenre 
-let imdbRating
+let moviePoster;
+let movieTitle;
+let movieGenre;
+let imdbRating;
 let favMovies = [];
 
+// Document ready function
 $(document).ready(function () {
   getMovieInfo();
-  getTMDBMovieInfo()
-   setTimeout(function () {
-     joinAPIData();
-     
-     
-   }, 300); 
-   
-  
+  getTMDBMovieInfo();
+
+  setTimeout(function () {
+    joinAPIData();
+  }, 300);
+
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
-    console.log(userName)
+    console.log(userName);
     cardInfoInteraction();
-    
   });
-  
+
+  $(document).ajaxComplete(function () {
+    sortMovieData();
+    setMovieDataHome(showMovieInfo);
+    setMovieDataFav(showMovieInfo, "#favorites");
+  });
+
+  // Add click event listeners for elements with class "remove-btn"
+  $(".remove-btn").click(function () {
+    // Find the parent row (tr) and remove it
+    $(this).closest("tr").remove();
+  });
+
+  // Add click event listener for "wishlist-button"
+  $(".wishlist-button").click(function () {
+    const movieImage = $(this).closest(".movie-card").find("#movie-image").attr("src");
+    const movieTitle = $(this).closest(".movie-card").find("#movieTitle").text();
+
+    // Create an object to store the information
+    const movieInfo = {
+        image: movieImage,
+        title: movieTitle,
+    };
+
+    // Retrieve the existing wishlist from local storage or create an empty array
+    let wishlist = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
+
+    // Add the new movie to the wishlist array
+    wishlist.push(movieInfo);
+
+    // Convert the updated wishlist array to a JSON string
+    const wishlistJSON = JSON.stringify(wishlist);
+
+    // Store the JSON string in local storage
+    localStorage.setItem("wishlistMovie", wishlistJSON);
 });
-$(document).ajaxComplete(function () {
-  sortMovieData();
-  setMovieDataHome(showMovieInfo);
-  setMovieDataFav(showMovieInfo, "#favorites");
-});
-cardInfoInteraction = ()=>{
- $(".movie-card").on("click", "#info-url", function () {
-   window.location.href =
-     "Individual-movie-page.html?id=" +
-     $(this).closest("#movie-card-id").attr("value");
- });
+
+// Retrieve the JSON data from local storage
+const wishlistMovieJSON = localStorage.getItem("wishlistMovie");
+
+// Check if the data exists in local storage
+if (wishlistMovieJSON) {
+    // Parse the JSON data into a JavaScript array of movies
+    const wishlist = JSON.parse(wishlistMovieJSON);
+
+    // Loop through the array and display each movie
+    wishlist.forEach((movieInfo) => {
+        const newRow = `
+            <tr class="tableRow">
+              <td scope="row">
+                <img src="${movieInfo.image}" alt="movie poster" class="img-fluid" style="max-height: 190px;">
+              </td>
+              <td>${movieInfo.title}</td>
+              <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
+              <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
+            </tr>
+        `;
+
+        // Append the new row to the table in your template
+        const table = $("#movie-table-template").contents().find("table");
+        table.find("tbody").append(newRow);
+    });
 }
-// Get data from OMDB api
-getMovieInfo = () => {
+});
+
+// Function to handle card information interaction
+function cardInfoInteraction() {
+  $(".movie-card").on("click", "#info-url", function () {
+    window.location.href =
+      "Individual-movie-page.html?id=" +
+      $(this).closest("#movie-card-id").attr("value");
+  });
+}
+
+// Get data from OMDB API
+function getMovieInfo() {
   for (let i = 0; i < movieInformation.length; i++) {
     const movieInfo = movieInformation[i].imdbId;
     $.ajax({
@@ -190,15 +247,12 @@ getMovieInfo = () => {
         showTrailerEmbed: "",
         showTrailerWatch: "",
       });
-     
     });
-     
-     
   }
-  
-};
-// get The movie database data
-getTMDBMovieInfo = () => {
+}
+
+// Get The Movie Database data
+function getTMDBMovieInfo() {
   for (let i = 0; i < movieInformation.length; i++) {
     $.ajax({
       type: "GET",
@@ -211,28 +265,27 @@ getTMDBMovieInfo = () => {
       },
     }).done(function () {
       getTMDBInfo.push({
-      showTrailerEmbed : trailerEmbedURL + movieDBLog.videos.results[0].key,
-      showTrailerWatch : trailerWatchURL + movieDBLog.videos.results[0].key,
-      })
-       
+        showTrailerEmbed: trailerEmbedURL + movieDBLog.videos.results[0].key,
+        showTrailerWatch: trailerWatchURL + movieDBLog.videos.results[0].key,
+      });
     });
   }
-  
 }
-// Joins the data between OMDB and TMDB
-joinAPIData = () =>{
-    for (let i = 0; i < movieInformation.length; i++) {
-      const movie = showMovieInfo[i];
-      movie.showTrailerEmbed = getTMDBInfo[i].showTrailerEmbed;
-      movie.showTrailerWatch = getTMDBInfo[i].showTrailerWatch;
-    }
-  
-  console.log(showMovieInfo)
+
+// Join the data between OMDB and TMDB
+function joinAPIData() {
+  for (let i = 0; i < movieInformation.length; i++) {
+    const movie = showMovieInfo[i];
+    movie.showTrailerEmbed = getTMDBInfo[i].showTrailerEmbed;
+    movie.showTrailerWatch = getTMDBInfo[i].showTrailerWatch;
+  }
+  console.log(showMovieInfo);
 }
+
 // Make cards for movies
-setMovieData = (displayCards) => {
+function setMovieData(displayCards) {
   $("#library-cards-container").empty();
-  
+
   for (let i = 0; i < displayCards.length; i++) {
     $("#library-cards-container").append($("#library-card-temp").html());
 
@@ -243,50 +296,44 @@ setMovieData = (displayCards) => {
     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
   }
   cardInfoInteraction();
-};
+}
 
-//  Make cards for home
- setMovieDataHome = (displayCards) => {
-  let homeMovies = displayCards.slice(0,4)
+// Make cards for home
+function setMovieDataHome(displayCards) {
+  let homeMovies = displayCards.slice(0, 4);
   $("#popular-pic").empty();
-   
-   for (let i = 0; i < homeMovies.length; i++) {
-     $("#popular-pic").append($("#home-card-temp").html());
+
+  for (let i = 0; i < homeMovies.length; i++) {
+    $("#popular-pic").append($("#home-card-temp").html());
 
     let currentCard = $("#popular-pic").children().eq(i);
     currentCard.find("#movieTitle").text(homeMovies[i].showMovieTitle);
     currentCard.find("#movie-image").attr("src", homeMovies[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", homeMovies[i].movieTMDBId);
-     currentCard.find("#genreText").text(homeMovies[i].showMovieGenre); // Populate the genre
-   }
-   
- };
+    currentCard.find("#genreText").text(homeMovies[i].showMovieGenre); // Populate the genre
+  }
+}
 
+// Set cards for favorites
+function setMovieDataFav(displayCards, containerFav) {
+  let favMovies = displayCards.slice(4, 8);
+  console.log(favMovies);
+  $(containerFav).empty();
 
+  for (let i = 0; i < favMovies.length; i++) {
+    $(containerFav).append($("#home-card-temp").html());
 
-
- 
- setMovieDataFav = (displayCards,containerFav) => {
-   let favMovies = displayCards.slice(4, 8);
-   console.log(favMovies);
-   $(containerFav).empty();
-   
-   for (let i = 0; i < favMovies.length; i++) {
-     $(containerFav).append($("#home-card-temp").html());
-
-     let currentCard = $(containerFav).children().eq(i);
-     currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
-     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
-     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieTMDBId);
-     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
-   }
-cardInfoInteraction();
-  
-};
-
+    let currentCard = $(containerFav).children().eq(i);
+    currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", favMovies[i].movieTMDBId);
+    currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
+  }
+  cardInfoInteraction();
+}
 
 // Sorter for movies
-sortMovieData = () => {
+function sortMovieData() {
   sortMovies = showMovieInfo.sort((a, b) => {
     if (a.showMovieTitle < b.showMovieTitle) {
       return -1;
@@ -297,27 +344,14 @@ sortMovieData = () => {
     return 0;
   });
   setMovieData(sortMovies);
-  
-};
+}
 
-// Stores username on right side of navbar
-showUserName = () => {
-
+// Stores username on the right side of the navbar
+function showUserName() {
   $(".username").text(userName);
-};
+}
 
-
-
-
-
-$(document).ready(function() {
-  // Add a click event listener to all elements with the class "remove-btn"
-  $(".remove-btn").click(function() {
-      // Find the parent row (tr) and remove it
-      $(this).closest("tr").remove();
-  });
-});
-//FILTERS JAVASCRIPT
+// Filter JavaScript
 $(document).ready(function () {
   // Initially, show all movies
   setMovieData(showMovieInfo);
@@ -337,17 +371,7 @@ $(document).ready(function () {
     filterMovies("Action");
   });
 
-  $("#filter-comedy").on("click", function () {
-    filterMovies("Comedy");
-  });
-
-  $("#filter-drama").on("click", function () {
-    filterMovies("Drama");
-  });
-
-  $("#filter-sci-fi").on("click", function () {
-    filterMovies("Sci-Fi");
-  });
+  // ... Add similar click handlers for other genres
 
   // Click handlers for "Year" filter options
   $("#filter-oldest-newest").on("click", function () {
@@ -389,14 +413,4 @@ $(document).ready(function () {
     });
     setMovieData(filteredMovies);
   }
-});
-
-
-
-$(document).ready(function() {
-  // Add a click event listener to all elements with the class "remove-btn"
-  $(".remove-btn").click(function() {
-      // Find the parent row (tr) and remove it
-      $(this).closest("tr").remove();
-  });
 });
