@@ -136,7 +136,7 @@ $(document).ready(function () {
   setTimeout(function () {
     joinAPIData();
     addToWishlistFunction();
-  }, 300);
+  }, 400);
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
@@ -161,31 +161,37 @@ $(document).ready(function () {
   
   
 });
+getMovieArrayInfo = (movieTitle,movieArray) =>{
+for (let i = 0; i < movieArray.length; i++) {
+  const getMovieTitle = movieArray[i];
+  console.log(getMovieTitle);
+  if (getMovieTitle.showMovieTitle === movieTitle){
+    console.log("found")
+    return getMovieTitle
+  }
+  
+}
 
+}
 addToWishlistFunction = () => {
   // Add click event listener for "wishlist-button"
   $(".wishlist-button").click(function () {
-    const movieImage = $(this)
-      .closest(".movie-card")
-      .find("#movie-image")
-      .attr("src");
+    
     const movieTitle = $(this)
       .closest(".movie-card")
       .find("#movieTitle")
       .text();
       console.log(movieTitle);
-      console.log(movieImage);
+      let getWishlistMovieInfo = getMovieArrayInfo(movieTitle,showMovieInfo)
+      console.log(getWishlistMovieInfo);
     // Create an object to store the information
-    const movieInfo = {
-      image: movieImage,
-      title: movieTitle,
-    };
+   
 
     // Retrieve the existing wishlist from local storage or create an empty array
     let wishlist = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
 
     // Add the new movie to the wishlist array
-    wishlist.push(movieInfo);
+    wishlist.push(getWishlistMovieInfo);
 
     // Convert the updated wishlist array to a JSON string
     const wishlistJSON = JSON.stringify(wishlist);
@@ -210,9 +216,9 @@ retrieveLibraryData = () =>{
       const newRow = `
             <tr class="tableRow">
               <td scope="row">
-                <img src="${movieInfo.image}" alt="movie poster" class="img-fluid" style="max-height: 190px;">
+                <img src="${movieInfo.showMovieImage}" alt="movie poster" class="img-fluid" style="max-height: 190px;">
               </td>
-              <td>${movieInfo.title}</td>
+              <td>${movieInfo.showMovieTitle}</td>
               <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
               <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
             </tr>
@@ -315,6 +321,8 @@ function setMovieData(displayCards) {
     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieTMDBId);
     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+    currentCard.find("#yearText").text(displayCards[i].showYear);
+    currentCard.find("#rating-card").text(displayCards[i].showImdbRating);
   }
   cardInfoInteraction();
 }
@@ -332,6 +340,8 @@ function setMovieDataHome(displayCards) {
     currentCard.find("#movie-image").attr("src", homeMovies[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", homeMovies[i].movieTMDBId);
     currentCard.find("#genreText").text(homeMovies[i].showMovieGenre); // Populate the genre
+      currentCard.find("#yearText").text(homeMovies[i].showYear);
+      currentCard.find("#rating-card").text(homeMovies[i].showImdbRating);
   }
 }
 
@@ -349,6 +359,8 @@ function setMovieDataFav(displayCards, containerFav) {
     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieTMDBId);
     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
+    currentCard.find("#yearText").text(favMovies[i].showYear);
+    currentCard.find("#rating-card").text(favMovies[i].showImdbRating);
   }
   cardInfoInteraction();
 }
