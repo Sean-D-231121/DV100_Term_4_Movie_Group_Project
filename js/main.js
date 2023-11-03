@@ -166,9 +166,7 @@ $(document).ready(function () {
 getMovieArrayInfo = (movieTitle,movieArray) =>{
 for (let i = 0; i < movieArray.length; i++) {
   const getMovieTitle = movieArray[i];
-  console.log(getMovieTitle);
   if (getMovieTitle.showMovieTitle === movieTitle){
-    console.log("found")
     return getMovieTitle
   }
   
@@ -182,7 +180,7 @@ addToWishlistFunction = () => {
       .closest(".movie-card")
       .find("#movieTitle")
       .text();
-    console.log(movieTitle);
+    
     // Retrieve the existing wishlist from local storage or create an empty array
     let wishlist = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
     
@@ -191,7 +189,6 @@ addToWishlistFunction = () => {
     if (checkIfInWatchlist(wishlist,getWishlistMovieInfo.movieTMDBId) === true){
       // Add the new movie to the wishlist array
       wishlist.push(getWishlistMovieInfo);
-      console.log(wishlist)
       // Convert the updated wishlist array to a JSON string
       const wishlistJSON = JSON.stringify(wishlist);
 
