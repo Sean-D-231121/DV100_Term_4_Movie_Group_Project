@@ -132,20 +132,22 @@ let favMovies = [];
 $(document).ready(function () {
   getMovieInfo();
   getTMDBMovieInfo();
-
+  
   setTimeout(function () {
     joinAPIData();
-    addToWishlistFunction();
-  }, 400);
+    
+  }, 2000);
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
     console.log(userName);
     cardInfoInteraction();
      let getMoviesWish = JSON.parse(localStorage.getItem("wishlistMovie"));
-     if (getMoviesWish !== null) {
-       retrieveLibraryData();
+     if(getMoviesWish !== null){
+      retrieveLibraryData();
      }
+       
+     
   });
 
   $(document).ajaxComplete(function () {
@@ -154,7 +156,7 @@ $(document).ready(function () {
     setMovieDataFav(showMovieInfo, "#favorites");
   });
 
-  
+
 
 
 
@@ -176,32 +178,47 @@ for (let i = 0; i < movieArray.length; i++) {
 addToWishlistFunction = () => {
   // Add click event listener for "wishlist-button"
   $(".wishlist-button").click(function () {
-    
     const movieTitle = $(this)
       .closest(".movie-card")
       .find("#movieTitle")
       .text();
-      console.log(movieTitle);
-      let getWishlistMovieInfo = getMovieArrayInfo(movieTitle,showMovieInfo)
-      console.log(getWishlistMovieInfo);
-    // Create an object to store the information
-   
-
+    console.log(movieTitle);
     // Retrieve the existing wishlist from local storage or create an empty array
     let wishlist = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
+    
+    let getWishlistMovieInfo = getMovieArrayInfo(movieTitle, showMovieInfo);
+    // Create an object to store the information
+    if (checkIfInWatchlist(wishlist,getWishlistMovieInfo.movieTMDBId) === true){
+      // Add the new movie to the wishlist array
+      wishlist.push(getWishlistMovieInfo);
+      console.log(wishlist)
+      // Convert the updated wishlist array to a JSON string
+      const wishlistJSON = JSON.stringify(wishlist);
 
-    // Add the new movie to the wishlist array
-    wishlist.push(getWishlistMovieInfo);
-
-    // Convert the updated wishlist array to a JSON string
-    const wishlistJSON = JSON.stringify(wishlist);
-
-    // Store the JSON string in local storage
-    localStorage.setItem("wishlistMovie", wishlistJSON);
+      // Store the JSON string in local storage
+      localStorage.setItem("wishlistMovie", wishlistJSON);
+    }
+    
   });
 
   
 };
+// checks whether the ID has already been added to wishlistMovie Array
+checkIfInWatchlist = (wishlistArray,movieId) =>{
+  if(wishlistArray.length > 0){
+    for (let i = 0; i < wishlistArray.length; i++) {
+      const movie = wishlistArray[i];
+      if (movie.movieTMDBId === movieId) {
+        return false;
+      }
+    }
+    return true;
+  } else{
+    return true;
+  }
+  
+}
+
 retrieveLibraryData = () =>{
   // Retrieve the JSON data from local storage
   const wishlistMovieJSON = localStorage.getItem("wishlistMovie");
@@ -227,6 +244,7 @@ retrieveLibraryData = () =>{
       // Append the new row to the table in your template
        $("#table").find("tbody").append(newRow);
     });
+    
   }
 
   // Add click event listeners for elements with class "remove-btn"
@@ -325,6 +343,7 @@ function setMovieData(displayCards) {
     currentCard.find("#rating-card").text(displayCards[i].showImdbRating);
   }
   cardInfoInteraction();
+  addToWishlistFunction();
 }
 
 // Make cards for home
