@@ -105,8 +105,8 @@ $(document).ready(function () {
 });
 $(document).ajaxComplete(function () {
   sortMovieData();
-  //setMovieDataHome(sortMovies);
-  //setMovieDataFav(showMovieInfo,"#favorites")
+  setMovieDataHome(sortMovies);
+  setMovieDataFav(showMovieInfo,"#favorites")
   
   $(".movie-card").on("click", "#info-url", function () {
     window.location.href =
@@ -154,39 +154,38 @@ setMovieData = (displayCards) => {
 };
 
 // Make cards for home
-// setMovieDataHome = (displayCards) => {
-//   $("#popular-pic").empty();
-//   console.log(displayCards)
-//   for (let i = 0; i < 4; i++) {
-//     $("#popular-pic").append($("#home-card-temp").html());
+ setMovieDataHome = (displayCards) => {
+   $("#popular-pic").empty();
+   console.log(displayCards)
+   for (let i = 0; i < 4; i++) {
+     $("#popular-pic").append($("#home-card-temp").html());
 
-//     let currentCard = $("#popular-pic").children().eq(i);
-//     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
-//     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
-//     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
-//     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
-//   }
-// };
+     let currentCard = $("#popular-pic").children().eq(i);
+     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
+     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
+     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
+     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+   }
+};
 
 
 
 
 // Make cards for home-fav
-// setMovieDataFav = (displayCards,containerFav) => {
-//   $(containerFav).empty();
-//   favMovies = showMovieInfo.slice(4,8)
-//   for (let i = 0; i < favMovies.length; i++) {
-//     $(containerFav).append($("#home-card-temp").html());
+ setMovieDataFav = (displayCards,containerFav) => {
+   $(containerFav).empty();
+   favMovies = showMovieInfo.slice(4,8)
+   for (let i = 0; i < favMovies.length; i++) {
+     $(containerFav).append($("#home-card-temp").html());
 
-//     let currentCard = $(containerFav).children().eq(i);
-//     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
-//     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
-//     currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
-//     currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
-//   }
+     let currentCard = $(containerFav).children().eq(i);
+     currentCard.find("#movieTitle").text(displayCards[i].showMovieTitle);
+     currentCard.find("#movie-image").attr("src", displayCards[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", displayCards[i].movieId);
+    currentCard.find("#genreText").text(displayCards[i].showMovieGenre); // Populate the genre
+   }
 
-  
-// };
+   };
 
 
 // Sorter for movies
