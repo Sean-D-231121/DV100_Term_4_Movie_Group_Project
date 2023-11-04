@@ -25,7 +25,7 @@ const movieInformation = [
     imdbId: "tt0137523",
   },
   {  
-  imdbId: "tt0114369",
+    imdbId: "tt0114369",
   },
   {  
     imdbId: "tt0816692",
@@ -129,16 +129,19 @@ getMovieInfo = () => {
       moviePoster = movie.Poster;
       movieTitle = movie.Title;
       movieGenre = movie.Genre; // Get the genre information
+      imdbVotes = parseInt(movie.imdbVotes.replace(/,/g, '')); // Get IMDb votes as an integer//
 
       showMovieInfo.push({
         movieId: movieInfo,
         showMovieTitle: movieTitle,
         showMovieImage: moviePoster,
         showMovieGenre: movieGenre, // Store the genre information
+        imdbVotes: imdbVotes, // Store IMDb votes as an integer//
       });
     });
   }
 };
+
 
 // Make cards for movies
 setMovieData = (displayCards) => {
@@ -175,23 +178,52 @@ setMovieData = (displayCards) => {
 
 
  
- setMovieDataFav = (displayCards,containerFav) => {
-   let favMovies = displayCards.slice(4, 8);
-   console.log(favMovies);
-   $(containerFav).empty();
-   
-   for (let i = 0; i < favMovies.length; i++) {
-     $(containerFav).append($("#home-card-temp").html());
-
-     let currentCard = $(containerFav).children().eq(i);
-     currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
-     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
-     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieId);
-     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
-   }
-
+//  setMovieDataFav = (displayCards,containerFav) => {
+//   let favMovies = displayCards.slice(4, 8);
+//   console.log(favMovies);
+//   $(containerFav).empty();
   
+//   for (let i = 0; i < favMovies.length; i++) {
+//     $(containerFav).append($("#home-card-temp").html());
+
+//     let currentCard = $(containerFav).children().eq(i);
+//     currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
+//     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
+//     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieId);
+//     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
+    
+//   }
+
+ 
+// };
+
+
+// Modify the setMovieDataFav function to display top movies by IMDb votes
+setMovieDataFav = (displayCards, containerFav) => {
+  // Sort the movies by IMDb votes in descending order
+  const sortedMovies = displayCards.slice().sort((a, b) => {
+    return b.imdbVotes - a.imdbVotes;
+  });
+
+  // Select the top movies by IMDb votes (e.g., top 4)
+  const topMovies = sortedMovies.slice(0, 4);
+
+  // Clear the container
+  $(containerFav).empty();
+
+  // Loop through and display the top movies
+  for (let i = 0; i < topMovies.length; i++) {
+    $(containerFav).append($("#home-card-temp").html());
+
+    let currentCard = $(containerFav).children().eq(i);
+    currentCard.find("#movieTitle").text(topMovies[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", topMovies[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", topMovies[i].movieId);
+    currentCard.find("#genreText").text(topMovies[i].showMovieGenre);
+    currentCard.find("#imdbVotes").text(topMovies[i].imdbVotes); // Display IMDb votes
+  }
 };
+
 
 
 // Sorter for movies
