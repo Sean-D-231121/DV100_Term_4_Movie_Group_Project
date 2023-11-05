@@ -129,14 +129,13 @@ getMovieInfo = () => {
       moviePoster = movie.Poster;
       movieTitle = movie.Title;
       movieGenre = movie.Genre; // Get the genre information
-      imdbVotes = parseInt(movie.imdbVotes.replace(/,/g, '')); // Get IMDb votes as an integer//
-
+      imdbVotes = parseInt(movie.imdbVotes.replace(/,/g, '')); // 
       showMovieInfo.push({
         movieId: movieInfo,
         showMovieTitle: movieTitle,
         showMovieImage: moviePoster,
         showMovieGenre: movieGenre, // Store the genre information
-        imdbVotes: imdbVotes, // Store IMDb votes as an integer//
+        imdbVotes: imdbVotes, //
       });
     });
   }
@@ -174,28 +173,6 @@ setMovieData = (displayCards) => {
    }
  };
 
-
-
-
- 
-//  setMovieDataFav = (displayCards,containerFav) => {
-//   let favMovies = displayCards.slice(4, 8);
-//   console.log(favMovies);
-//   $(containerFav).empty();
-  
-//   for (let i = 0; i < favMovies.length; i++) {
-//     $(containerFav).append($("#home-card-temp").html());
-
-//     let currentCard = $(containerFav).children().eq(i);
-//     currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
-//     currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
-//     currentCard.find("#movie-card-id").attr("value", favMovies[i].movieId);
-//     currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
-    
-//   }
-
- 
-// };
 
 
 // Modify the setMovieDataFav function to display top movies by IMDb votes
@@ -330,3 +307,5 @@ $(document).ready(function() {
       $(this).closest("tr").remove();
   });
 });
+
+
