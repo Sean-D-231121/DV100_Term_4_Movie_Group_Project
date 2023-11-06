@@ -408,7 +408,11 @@ h1 {
     float: right;
     color: #fff;
     text-align: start;
-    width: 700px;
+    width: 500px;
     padding-bottom: 100px;
+}
+
+body {
+    overflow-x: hidden;
 }
 
