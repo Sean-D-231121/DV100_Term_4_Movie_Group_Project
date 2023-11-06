@@ -201,6 +201,7 @@ addToWishlistFunction = () => {
   
 };
 // checks whether the ID has already been added to wishlistMovie Array
+//  Check for duplicates
 checkIfInWatchlist = (wishlistArray,movieId) =>{
   if(wishlistArray.length > 0){
     for (let i = 0; i < wishlistArray.length; i++) {
@@ -324,6 +325,7 @@ function joinAPIData() {
   
 }
 
+
 // Make cards for movies
 function setMovieData(displayCards) {
   $("#library-cards-container").empty();
@@ -362,24 +364,35 @@ function setMovieDataHome(displayCards) {
 }
 
 // Set cards for favorites
-function setMovieDataFav(displayCards, containerFav) {
-  let favMovies = displayCards.slice(4, 8);
 
+// Modify the setMovieDataFav function to display top movies by IMDb votes
+setMovieDataFav = (displayCards, containerFav) => {
+  // Sort the movies by IMDb votes in descending order
+  const sortedMovies = displayCards.slice().sort((a, b) => {
+    return b.showImdbRating - a.showImdbRating;
+  });
+
+  // Select the top movies by IMDb votes (e.g., top 4)
+  const topMovies = sortedMovies.slice(0, 4);
+
+  // Clear the container
   $(containerFav).empty();
 
-  for (let i = 0; i < favMovies.length; i++) {
+  // Loop through and display the top movies
+  for (let i = 0; i < topMovies.length; i++) {
     $(containerFav).append($("#home-card-temp").html());
 
     let currentCard = $(containerFav).children().eq(i);
-    currentCard.find("#movieTitle").text(favMovies[i].showMovieTitle);
-    currentCard.find("#movie-image").attr("src", favMovies[i].showMovieImage);
-    currentCard.find("#movie-card-id").attr("value", favMovies[i].movieTMDBId);
-    currentCard.find("#genreText").text(favMovies[i].showMovieGenre); // Populate the genre
-    currentCard.find("#yearText").text(favMovies[i].showYear);
-    currentCard.find("#rating-card").text(favMovies[i].showImdbRating);
+    currentCard.find("#movieTitle").text(topMovies[i].showMovieTitle);
+    currentCard.find("#movie-image").attr("src", topMovies[i].showMovieImage);
+    currentCard.find("#movie-card-id").attr("value", topMovies[i].movieId);
+    currentCard.find("#genreText").text(topMovies[i].showMovieGenre);
+    currentCard.find("#yearText").text(displayCards[i].showYear);
+    currentCard.find("#rating-card").text(displayCards[i].showImdbRating);
   }
-  cardInfoInteraction();
-}
+};
+
+
 
 // Sorter for movies
 function sortMovieData() {
@@ -463,3 +476,9 @@ $(document).ready(function () {
     setMovieData(filteredMovies);
   }
 });
+
+
+
+
+
+

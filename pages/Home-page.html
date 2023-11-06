@@ -38,67 +38,70 @@
         </div>
     </nav>
 
-    <!--slider-->
-    <div id="carouselExample" class="carousel slide" data-bs-theme="dark">
-      <div class="carousel-inner">
+    
 
-          <!--slide one-->
-        <div class="carousel-item active">
-        <div class="container">
-              <div class="row full-height">
-                  <div class="col align-self-center pt-5">
-                      <h2>Breakfast at Tiffany's</h2>
-                      <h2>"Breakfast at Tiffany's" is a 1961 romantic comedy featuring Audrey Hepburn as a chic New York socialite in an unconventional love story.</h2>
-                  </div>
-                  <div class="col align-self-end">
-                      <img src="../assets/Breakfast_at_Tiffany's.jpg" class="slider-image">
-                  </div>
-              </div>
-        </div>
-        </div>
-
-        <!--slide two-->
-        <div class="carousel-item active">
-          <div class="container">
-              <div class="row full-height">
-                  <div class="col align-self-center pt-5">
-                      <h2>The God Father</h2>
-                      <h2>"The Godfather" is a legendary crime drama film about the Corleone Mafia family, led by Vito Corleone, and the transformation of his son Michael into a powerful mob boss.</h2>
-                  </div>
-                  <div class="col align-self-end">
-                    <img src="../assets/the god father.jpg" class="slider-image">
-                  </div>
-              </div>
-          </div>
-        </div>
-
-        <!--slide three-->
-        <div class="carousel-item active">
-          <div class="container">
-              <div class="row full-height">
-                  <div class="col align-self-center pt-5">
-                      <h2>Jaws</h2>
-                      <h2>"Jaws" is a 1975 thriller film about a giant great white shark terrorizing a coastal town, leading to a hunt to stop it.</h2>
-                  </div>
-                  <div class="col align-self-end">
-                      <img src="../assets/jaws.jpg" class="slider-image">
-                  </div>
-              </div>
-          </div>
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="../assets/karate kid.jpg" alt="Movie 1">
+      <div class="carousel-caption ">
+        <div class="movie-info">
+            <h2>The Karate kid</h2>
+            <p>Year: 1984<span class="year-1"></span></p>
+            <p>Rated: PG<span class="rated-1"></span></p>
+            <p>Genre: Action, Drama, Family<span class="genre-1"></span></p>
+            <p>Director: John G. Avildsen, Writer, Robert Mark Kamen<span class="director-1"></span></p>
+            <p>Actors: Ralph Macchio, Pat Morita, Elisabeth Shue<span class="actors-1"></span></p>
+            <p>Plot: A martial arts master agrees to teach karate to a bullied teenager.<span class="plot-1"></span></p>
         </div>
       </div>
-
-      <!-- carousel controls-->
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="../assets/back to the future.jpg" alt="Movie 2">
+      <div class="carousel-caption ">
+        <div class="movie-info">
+            <h2>Back to the Future</h2>
+            <p>Year: 1985<span class="year-2"></span></p>
+            <p>Rated: PG<span class="rated-2"></span></p>
+            <p>Genre: Adventure, Comedy, Sci-Fi<span class="genre-2"></span></p>
+            <p>Director: Robert Zemeckis<span class="director-2"></span></p>
+            <p>Actors: Michael J. Fox, Christopher Lloyd, Lea Thompson<span class="actors-2"></span></p>
+            <p>Plot: Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.<span class="plot-2"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/the god father.jpg" alt="Movie 3">
+      <div class="carousel-caption ">
+        <div class="movie-info">
+            <h2>The Godfather</h2>
+            <p>Year: 1972<span class="year-3"></span></p>
+            <p>Rated: R<span class="rated-3"></span></p>
+            <p>Genre: Crime, Drama<span class="genre-3"></span></p>
+            <p>Director: Francis Ford Coppola<span class="director-3"></span></p>
+            <p>Actors: Marlon Brando, Al Pacino, James Caan<span class="actors-3"></span></p>
+            <p>Plot: Don Vito Corleone, head of a mafia family, decides to hand over his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.<span class="plot-3"></span></p>
+        </div>
+      </div>
+    </div>
   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
+
+ 
     <!--movies-->
     <h1 class="Heading">POPULAR PICKS</h1>
     <div class="container mt-5">
@@ -141,9 +144,48 @@
       </div>
     </template>
 
+    
+
     <!--footer-->
 
-    <h3 class="footer">Copyright Retroverse 2023</h3>
+    <footer class="container-fluid" style="background-color: #961503; border: 2px dotted yellow;">
+      <div class="container">
+          <div class="row">
+              <!-- Smaller Column (col-md-4) -->
+              <div class="col-md-4 text-light py-4">
+                  <h1 style="text-align: left;">Retroverse</h1>
+                  <p>&copy; 2023 Retroverse</p>
+              </div>
+
+              <!-- Larger Column (col-md-8) -->
+              <div class="col-md-8 text-light py-4">
+                  <h2>Need Help?</h2>
+                  <p>If you have any questions or need assistance, please fill out the form below:</p>
+                  <form>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name" class="text-light">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Your Name">
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="surname" class="text-light">Surname</label>
+                                  <input type="text" class="form-control" id="surname" placeholder="Your Surname">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="email" class="text-light">Email</label>
+                          <input type="email" class="form-control" id="email" placeholder="Your Email">
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="background-color: #091509; margin-top: 10px;">Submit</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
