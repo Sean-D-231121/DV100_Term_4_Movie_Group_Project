@@ -413,6 +413,8 @@ function showUserName() {
   $(".username").text(userName);
 }
 
+// ...
+
 // Filter JavaScript
 $(document).ready(function () {
   // Initially, show all movies
@@ -420,28 +422,13 @@ $(document).ready(function () {
 
   // Click handler for "All Movies"
   $("#filter-all-movies").on("click", function () {
-    getFilter = "allMovies"; // Reset the filter option to show all movies
-    setMovieData(sortMovies);
+    filterMovies("All-Movies");
   });
 
   // Click handlers for "Genre" filter options
-  $("#filter-all-genres").on("click", function () {
-    filterMovies("All-Genres");
-  });
-
-  $("#filter-action").on("click", function () {
-    filterMovies("Action");
-  });
-
-  // ... Add similar click handlers for other genres
-
-  // Click handlers for "Year" filter options
-  $("#filter-oldest-newest").on("click", function () {
-    filterMovies("Oldest-Newest");
-  });
-
-  $("#filter-newest-oldest").on("click", function () {
-    filterMovies("Newest-Oldest");
+  $(".dropdown-option").on("click", function () {
+    const filter = $(this).attr("data-filter");
+    filterMovies(filter);
   });
 
   // Click handlers for "IMDB Score" filter options
@@ -453,32 +440,44 @@ $(document).ready(function () {
     filterMovies("Worst-Best");
   });
 
+  // Click handlers for "Year" filter options
+  $("#filter-oldest-newest").on("click", function () {
+    filterMovies("Oldest-Newest");
+  });
+
+  $("#filter-newest-oldest").on("click", function () {
+    filterMovies("Newest-Oldest");
+  });
+
   // Function to apply the filter to movie cards
   function filterMovies(filter) {
-    const filteredMovies = showMovieInfo.filter((movie) => {
-      if (filter === "All-Genres") {
-        return true; // Show all movies
-      } else if (filter === "All-Movies") {
-        return true; // Show all movies
-      } else if (filter === "Best-Worst") {
-        return true; // Implement sorting from best to worst IMDb score
-      } else if (filter === "Worst-Best") {
-        return true; // Implement sorting from worst to best IMDb score
-      } else if (filter === "Oldest-Newest") {
-        return true; // Implement sorting from oldest to newest year
-      } else if (filter === "Newest-Oldest") {
-        return true; // Implement sorting from newest to oldest year
-      } else {
-        // Implement genre filtering
-        return movie.showMovieGenre.includes(filter);
-      }
-    });
+    let filteredMovies = [];
+
+    if (filter === "All-Movies") {
+      // Show all movies
+      filteredMovies = showMovieInfo.slice();
+    } else if (filter === "All-Genres") {
+      // Show all movies, no genre filter
+      filteredMovies = showMovieInfo.slice();
+    } else if (filter === "Best-Worst") {
+      // Sort by IMDb score from highest to lowest
+      filteredMovies = showMovieInfo.slice().sort((a, b) => b.showImdbRating - a.showImdbRating);
+    } else if (filter === "Worst-Best") {
+      // Sort by IMDb score from lowest to highest
+      filteredMovies = showMovieInfo.slice().sort((a, b) => a.showImdbRating - b.showImdbRating);
+    } else if (filter === "Oldest-Newest") {
+      // Sort by year from oldest to newest
+      filteredMovies = showMovieInfo.slice().sort((a, b) => a.showYear - b.showYear);
+    } else if (filter === "Newest-Oldest") {
+      // Sort by year from newest to oldest
+      filteredMovies = showMovieInfo.slice().sort((a, b) => b.showYear - a.showYear);
+    } else {
+      // Filter by genre
+      filteredMovies = showMovieInfo.filter((movie) =>
+        movie.showMovieGenre.includes(filter)
+      );
+    }
+
     setMovieData(filteredMovies);
   }
 });
-
-
-
-
-
-
