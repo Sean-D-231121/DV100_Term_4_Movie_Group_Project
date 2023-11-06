@@ -154,13 +154,8 @@ $(document).ready(function () {
     setMovieDataFav(showMovieInfo, "#favorites");
   });
 
-  
-
-
-
-  
-  
 });
+
 getMovieArrayInfo = (movieTitle,movieArray) =>{
 for (let i = 0; i < movieArray.length; i++) {
   const getMovieTitle = movieArray[i];
@@ -168,24 +163,26 @@ for (let i = 0; i < movieArray.length; i++) {
   if (getMovieTitle.showMovieTitle === movieTitle){
     console.log("found")
     return getMovieTitle
+    }
   }
-  
 }
 
-}
 addToWishlistFunction = () => {
   // Add click event listener for "wishlist-button"
   $(".wishlist-button").click(function () {
-    
     const movieTitle = $(this)
       .closest(".movie-card")
       .find("#movieTitle")
       .text();
-      console.log(movieTitle);
-      let getWishlistMovieInfo = getMovieArrayInfo(movieTitle,showMovieInfo)
-      console.log(getWishlistMovieInfo);
+    const genreText = $(this)
+      .closest(".movie-card")
+      .find("#genreText")
+      .text();
+    
+    let getWishlistMovieInfo = getMovieArrayInfo(movieTitle, showMovieInfo);
+    getWishlistMovieInfo.showMovieGenre = genreText; // Include genre information
+
     // Create an object to store the information
-   
 
     // Retrieve the existing wishlist from local storage or create an empty array
     let wishlist = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
@@ -199,9 +196,8 @@ addToWishlistFunction = () => {
     // Store the JSON string in local storage
     localStorage.setItem("wishlistMovie", wishlistJSON);
   });
-
-  
 };
+
 retrieveLibraryData = () =>{
   // Retrieve the JSON data from local storage
   const wishlistMovieJSON = localStorage.getItem("wishlistMovie");
@@ -219,8 +215,8 @@ retrieveLibraryData = () =>{
                 <img src="${movieInfo.showMovieImage}" alt="movie poster" class="img-fluid" style="max-height: 190px;">
               </td>
               <td>${movieInfo.showMovieTitle}</td>
-              <td><button class="trailer-btn btn btn-primary btn-sm">Watch Trailer</button></td>
-              <td><button class="remove-btn btn btn-danger btn-sm">Remove</button></td>
+              <td>${movieInfo.showMovieGenre}</td>
+              <td><button class="remove-btn btn btn-danger btn-sm"></button></td>
             </tr>
         `;
 
@@ -229,12 +225,21 @@ retrieveLibraryData = () =>{
     });
   }
 
-  // Add click event listeners for elements with class "remove-btn"
+  // Remove items from local storage when "Delete button" is clicked
   $(".remove-btn").click(function () {
-    // Find the parent row (tr) and remove it
-    $(this).closest("tr").remove();
-  });
+    
+  let tableRow = $(this).closest("tr").index()
+
+  let getCurrentWishList = JSON.parse(localStorage.getItem("wishlistMovie"))
+
+  getCurrentWishList.splice(tableRow, 1)
+  let newWishList = JSON.stringify(getCurrentWishList)
+  localStorage.setItem("wishlistMovie", newWishList)
+  $(this).closest("tr").remove()
+
+});
 }
+
 // Function to handle card information interaction
 function cardInfoInteraction() {
   $(".movie-card").on("click", "#info-url", function () {
@@ -306,7 +311,6 @@ function joinAPIData() {
     movie.showTrailerEmbed = getTMDBInfo[i].showTrailerEmbed;
     movie.showTrailerWatch = getTMDBInfo[i].showTrailerWatch;
   }
-  
 }
 
 // Make cards for movies

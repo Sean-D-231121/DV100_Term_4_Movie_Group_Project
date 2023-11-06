@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:ital,wght@0,700;1,400&family=Pacifico&display=swap');
 
+
 /* font-family: 'Bebas Neue', sans-serif; 
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Pacifico', cursive;*/
@@ -313,22 +314,23 @@ h1 {
 /* -------------------------------------------------- */
 
 .table button {
-    width: 203px;
+    width: 50px;
     height: 50px;
     background-color: #EEAD1D;
-    color: #ffffff;
+    background-image: url("/assets/delete_icon.png");
+    background-size: cover;
+    background-position: center center;
     border: solid 2px #EEAD1D;
-    border-radius: 5px;
-    margin-top: 70px;
+    border-radius: 50px; 
 }
 
 .table button:hover {
-    width: 203px;
     background-color: #ffffff;
-    color: #EEAD1D;
+    background-image: url("/assets/delete_icon_hover.png");
+    background-size: cover;
+    background-position: center center;
     border: solid 2px #EEAD1D;
-    border-radius: 5px;
-    margin-top: 70px;
+    border-radius: 50px;
 }
 
 .table{
@@ -360,7 +362,9 @@ h1 {
     color: #ffffff;
   }
 
-/*individual page*/
+/* -------------------------------------------------- */
+/*Individual Movie Page*/
+/* -------------------------------------------------- */
 
   .singel-movie{
     width: 450px;
@@ -391,8 +395,10 @@ h1 {
     border: none;
 }
 
-/*carousel*/
-
+/* -------------------------------------------------- */
+/* Home Page */
+/* -------------------------------------------------- */
+/* Carousel */
 
 .slider-image{
     width: 650px;
