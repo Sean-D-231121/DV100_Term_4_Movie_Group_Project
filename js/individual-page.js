@@ -29,7 +29,7 @@ getIndividualMovie = (id) => {
       console.log(movie);
       getImdbId = movie.imdb_id;
       $(".singel-movie").attr("src", imagePath + movie.poster_path);
-      $("#individual-title").text(movie.original_title);
+      $("#individual-title").text("Name: "+ movie.original_title);
       $("#individual-trailer-link").attr("href", individualTrailerWatchURL + movie.videos.results[0].key)
       individualInfo = {
         movieOMDBId: getImdbId,
@@ -59,11 +59,11 @@ getIndividualMovie = (id) => {
       success: function (data) {
         const movieOMDB = data;
         console.log(movieOMDB);
-        $("#actors").text(movieOMDB.Actors);
-        $("#director").text(movieOMDB.Director);
-        $("#overview").text(movieOMDB.Plot);
-        $("#rating").text(movieOMDB.imdbRating);
-        $("#box-office").text(movieOMDB.BoxOffice);
+        $("#actors").text("Actors: " + movieOMDB.Actors);
+        $("#director").text("Director: " + movieOMDB.Director);
+        $("#overview").text("Plot: " + movieOMDB.Plot);
+        $("#rating").text("IMDB rating: " + movieOMDB.imdbRating);
+        $("#box-office").text("Box-Office: " + movieOMDB.BoxOffice);
 
         individualInfo.showMovieTitle = movieOMDB.Title;
         individualInfo.showMovieImage = movieOMDB.Poster;

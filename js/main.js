@@ -2,6 +2,7 @@
 let userName;
 const trailerWatchURL = "https://www.youtube.com/watch?v=";
 const trailerEmbedURL = "https://www.youtube.com/embed/";
+const imageURL = "https://image.tmdb.org/t/p/original/";
 const movieInformation = [
   {
     imdbId: "tt0083866",
@@ -135,12 +136,14 @@ $(document).ready(function () {
   
   setTimeout(function () {
     joinAPIData();
-    
-  }, 2000);
+    $("#slide-1").css(
+      "background-image",
+      "url(" + showMovieInfo[0].showBackdropImage + ")"
+    );
+  }, 1500);
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
-    console.log(userName);
     cardInfoInteraction();
      let getMoviesWish = JSON.parse(localStorage.getItem("wishlistMovie"));
      if(getMoviesWish !== null){
@@ -248,6 +251,7 @@ retrieveLibraryData = () =>{
   // Add click event listeners for elements with class "remove-btn"
   $(".remove-btn").click(function () {
     // Find the parent row (tr) and remove it
+
     $(this).closest("tr").remove();
   });
 }
@@ -289,6 +293,7 @@ function getMovieInfo() {
         runtime: movie.Runtime,
         showTrailerEmbed: "",
         showTrailerWatch: "",
+        showBackdropImage: "",
       });
     });
   }
@@ -310,7 +315,9 @@ function getTMDBMovieInfo() {
       getTMDBInfo.push({
         showTrailerEmbed: trailerEmbedURL + movieDBLog.videos.results[0].key,
         showTrailerWatch: trailerWatchURL + movieDBLog.videos.results[0].key,
+        showBackdropImage: imageURL + movieDBLog.images.backdrops[0].file_path,
       });
+      
     });
   }
 }
@@ -321,8 +328,8 @@ function joinAPIData() {
     const movie = showMovieInfo[i];
     movie.showTrailerEmbed = getTMDBInfo[i].showTrailerEmbed;
     movie.showTrailerWatch = getTMDBInfo[i].showTrailerWatch;
+    movie.showBackdropImage = getTMDBInfo[i].showBackdropImage
   }
-  
 }
 
 
@@ -371,10 +378,9 @@ setMovieDataFav = (displayCards, containerFav) => {
   const sortedMovies = displayCards.slice().sort((a, b) => {
     return b.showImdbRating - a.showImdbRating;
   });
-
+ 
   // Select the top movies by IMDb votes (e.g., top 4)
-  const topMovies = sortedMovies.slice(0, 4);
-
+  const topMovies = sortedMovies.slice(0,4);
   // Clear the container
   $(containerFav).empty();
 
@@ -387,9 +393,12 @@ setMovieDataFav = (displayCards, containerFav) => {
     currentCard.find("#movie-image").attr("src", topMovies[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", topMovies[i].movieId);
     currentCard.find("#genreText").text(topMovies[i].showMovieGenre);
-    currentCard.find("#yearText").text(displayCards[i].showYear);
-    currentCard.find("#rating-card").text(displayCards[i].showImdbRating);
+    currentCard.find("#yearText").text(topMovies[i].showYear);
+    currentCard.find("#rating-card").text(topMovies[i].showImdbRating);
+    
   }
+  cardInfoInteraction();
+  addToWishlistFunction();
 };
 
 
