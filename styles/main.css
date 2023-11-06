@@ -134,6 +134,7 @@ h3{
 }
 
 
+
 .lightbulb-button:hover {
     border-color: #f5dc54; 
     color: #ffff; 
@@ -395,15 +396,8 @@ h1 {
 /* ------------------------------------------ */
 .carousel-item {
     width: 100%;
-    padding-left: 200px;
     background-color: #091509;
 }
-
-.slide img {
-    width: 550px;
-    height: 800px;
-}
-
 .movie-info {
     float: right;
     color: #fff;
@@ -415,8 +409,27 @@ h1 {
 .carousel-item{
     background-position: center;
     background-size: cover;
-    height: 80vh;
+    height: 100vh;
+    
 }
+.carousel{
+    color: white
+}
+.carousel-buttons{
+     border: 2px dotted #f5dc54;
+    border-radius: 5px;
+    background-color: #961503;
+    color: #EEAD1D;
+    padding: 10px 15px; /* Reduced horizontal padding */
+    margin: 5px;
+    margin-top: -10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
+}
+
 .carousel-control-prev-icon {
  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fffff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
 }

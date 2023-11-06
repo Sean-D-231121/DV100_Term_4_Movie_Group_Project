@@ -161,6 +161,7 @@ $(document).ready(function () {
 
 });
 
+// Get movie info by looping through array by using movieTitle
 getMovieArrayInfo = (movieTitle,movieArray) =>{
 for (let i = 0; i < movieArray.length; i++) {
   const getMovieTitle = movieArray[i];
@@ -201,6 +202,7 @@ checkIfInWatchlist = (wishlistArray,movieId) =>{
   if(wishlistArray.length > 0){
     for (let i = 0; i < wishlistArray.length; i++) {
       const movie = wishlistArray[i];
+      // checks if TMDBId and movieId match and returns false if found
       if (movie.movieTMDBId === movieId) {
         return false;
       }
@@ -365,8 +367,8 @@ function setMovieDataHome(displayCards) {
     currentCard.find("#movie-image").attr("src", homeMovies[i].showMovieImage);
     currentCard.find("#movie-card-id").attr("value", homeMovies[i].movieTMDBId);
     currentCard.find("#genreText").text(homeMovies[i].showMovieGenre); // Populate the genre
-      currentCard.find("#yearText").text(homeMovies[i].showYear);
-      currentCard.find("#rating-card").text(homeMovies[i].showImdbRating);
+    currentCard.find("#yearText").text(homeMovies[i].showYear);
+    currentCard.find("#rating-card").text(homeMovies[i].showImdbRating);
   }
 }
 
@@ -391,14 +393,15 @@ setMovieDataFav = (displayCards, containerFav) => {
     let currentCard = $(containerFav).children().eq(i);
     currentCard.find("#movieTitle").text(topMovies[i].showMovieTitle);
     currentCard.find("#movie-image").attr("src", topMovies[i].showMovieImage);
-    currentCard.find("#movie-card-id").attr("value", topMovies[i].movieId);
+    currentCard.find("#movie-card-id").attr("value", topMovies[i].movieTMDBId);
     currentCard.find("#genreText").text(topMovies[i].showMovieGenre);
     currentCard.find("#yearText").text(topMovies[i].showYear);
     currentCard.find("#rating-card").text(topMovies[i].showImdbRating);
     
+    cardInfoInteraction();
+    addToWishlistFunction();
   }
-  cardInfoInteraction();
-  addToWishlistFunction();
+  
 };
 
 
@@ -425,7 +428,7 @@ function showUserName() {
 // Filter JavaScript
 $(document).ready(function () {
   // Initially, show all movies
-  setMovieData(showMovieInfo);
+ 
 
   // Click handler for "All Movies"
   $("#filter-all-movies").on("click", function () {
