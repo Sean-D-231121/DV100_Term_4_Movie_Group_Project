@@ -26,7 +26,6 @@ getIndividualMovie = (id) => {
     url: getIndividualMovieUrl,
     success: function (data) {
       const movie = data;
-      console.log(movie);
       getImdbId = movie.imdb_id;
       $(".singel-movie").attr("src", imagePath + movie.poster_path);
       $("#individual-title").text("Name: "+ movie.original_title);
@@ -58,7 +57,6 @@ getIndividualMovie = (id) => {
       url: getOMDBUrl,
       success: function (data) {
         const movieOMDB = data;
-        console.log(movieOMDB);
         $("#actors").text("Actors: " + movieOMDB.Actors);
         $("#director").text("Director: " + movieOMDB.Director);
         $("#overview").text("Plot: " + movieOMDB.Plot);
@@ -73,7 +71,6 @@ getIndividualMovie = (id) => {
         individualInfo.showYear = movieOMDB.Year;
         individualInfo.plot = movieOMDB.Plot;
         individualInfo.runtime = movieOMDB.Runtime;
-        console.log(individualInfo);
         $("title").text("Movie - " + individualInfo.showMovieTitle);
       },
     });
