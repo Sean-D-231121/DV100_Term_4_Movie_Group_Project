@@ -136,27 +136,27 @@ $(document).ready(function () {
   
   setTimeout(function () {
     joinAPIData();
-    $("#slide-1").css(
-      "background-image",
-      "url(" + showMovieInfo[0].showBackdropImage + ")"
-    );
+     sortMovieData();
+      slideItems("#slide-1", 1);
+      slideItems("#slide-2", 2);
+      slideItems("#slide-3", 3);
+      slideInfoInteraction();
+     setMovieDataHome(showMovieInfo);
+     setMovieDataFav(showMovieInfo, "#favorites");
+     slideWishlist();
+
   }, 1500);
   $(window).on("load", function () {
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
     cardInfoInteraction();
+    
      let getMoviesWish = JSON.parse(localStorage.getItem("wishlistMovie"));
      if(getMoviesWish !== null){
       retrieveLibraryData();
      }
        
      
-  });
-
-  $(document).ajaxComplete(function () {
-    sortMovieData();
-    setMovieDataHome(showMovieInfo);
-    setMovieDataFav(showMovieInfo, "#favorites");
   });
 
 });
@@ -184,7 +184,7 @@ addToWishlistFunction = () => {
     
     let getWishlistMovieInfo = getMovieArrayInfo(movieTitle, showMovieInfo);
     // Create an object to store the information
-    if (checkIfInWatchlist(wishlist,getWishlistMovieInfo.movieTMDBId) === true){
+    if (checkIfInWatchlist(wishlist,getWishlistMovieInfo.movieTMDBId) === false){
       // Add the new movie to the wishlist array
       wishlist.push(getWishlistMovieInfo);
       // Convert the updated wishlist array to a JSON string
@@ -204,12 +204,12 @@ checkIfInWatchlist = (wishlistArray,movieId) =>{
       const movie = wishlistArray[i];
       // checks if TMDBId and movieId match and returns false if found
       if (movie.movieTMDBId === movieId) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
   } else{
-    return true;
+    return false;
   }
   
 }
@@ -256,6 +256,56 @@ retrieveLibraryData = () =>{
 
 });
 }
+// displays a movie new movie based on the slideId and index put in
+function slideItems (slideId, index){
+  const newest = showMovieInfo.slice().sort((a, b) => b.showYear - a.showYear);
+  const newestMovie = newest[index];
+   $(slideId).css(
+     "background-image",
+     "url(" + newestMovie.showBackdropImage + ")"
+   );
+  $(slideId).find(".slideName").text(newestMovie.showMovieTitle);
+  $(slideId).find(".slideRating").text("Rating: " + newestMovie.showImdbRating);
+  $(slideId).find(".slideDirector").text("Director: " + newestMovie.showDirector);
+  $(slideId).find(".id-container").attr("value", newestMovie.movieTMDBId);
+
+}
+// adds to wishlist from when pressing on watchlist button on home page slider
+function slideWishlist(){
+  // Add click event listener for "wishlist-button"
+  $(".wishlist-button-slide").on("click",function () {
+    const movieTitle = $(this)
+      .closest(".carousel-item")
+      .find(".slideName")
+      .text();
+    
+    
+
+    // Retrieve the existing wishlist from local storage or create an empty array
+    let wishlist = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
+
+    let getWishlistMovieInfo = getMovieArrayInfo(movieTitle, showMovieInfo);
+    // Create an object to store the information
+    if (
+      checkIfInWatchlist(wishlist, getWishlistMovieInfo.movieTMDBId) === false
+    ) {
+      // Add the new movie to the wishlist array
+      wishlist.push(getWishlistMovieInfo);
+      // Convert the updated wishlist array to a JSON string
+      const wishlistJSON = JSON.stringify(wishlist);
+
+      // Store the JSON string in local storage
+      localStorage.setItem("wishlistMovie", wishlistJSON);
+    }
+  });
+}
+function slideInfoInteraction() {
+  $(".info-button-slide").click(function () {
+    window.location.href =
+      "Individual-movie-page.html?id=" +
+      $(this).closest(".id-container").attr("value");
+  });
+}
 
 // Function to handle card information interaction
 function cardInfoInteraction() {
@@ -282,6 +332,7 @@ function getMovieInfo() {
       movieGenre = movie.Genre; // Get the genre information
       imdbRating = movie.imdbRating;
       boxOffice = movie.BoxOffice;
+      director = movie.Director;
       showMovieInfo.push({
         movieOMDBId: movieInformation[i].imdbId,
         movieTMDBId: movieInformation[i].moviedbId,
@@ -290,6 +341,7 @@ function getMovieInfo() {
         showMovieGenre: movieGenre, // Store the genre information
         showImdbRating: +imdbRating,
         showBoxOffice: boxOffice,
+        showDirector: director,
         showYear: movie.Year,
         plot: movie.Plot,
         runtime: movie.Runtime,
@@ -315,6 +367,8 @@ function getTMDBMovieInfo() {
       },
     }).done(function () {
       getTMDBInfo.push({
+        getTMDBId : movieDBLog.id,
+        getTMDBName : movieDBLog.original_title,
         showTrailerEmbed: trailerEmbedURL + movieDBLog.videos.results[0].key,
         showTrailerWatch: trailerWatchURL + movieDBLog.videos.results[0].key,
         showBackdropImage: imageURL + movieDBLog.images.backdrops[0].file_path,
@@ -326,12 +380,19 @@ function getTMDBMovieInfo() {
 
 // Join the data between OMDB and TMDB
 function joinAPIData() {
-  for (let i = 0; i < movieInformation.length; i++) {
+  for (let i = 0; i < showMovieInfo.length; i++) {
     const movie = showMovieInfo[i];
-    movie.showTrailerEmbed = getTMDBInfo[i].showTrailerEmbed;
-    movie.showTrailerWatch = getTMDBInfo[i].showTrailerWatch;
-    movie.showBackdropImage = getTMDBInfo[i].showBackdropImage
+    for (let j = 0; j < getTMDBInfo.length; j++) {
+      const movieTwo = getTMDBInfo[j];
+      if(+movie.movieTMDBId === movieTwo.getTMDBId){
+          movie.showTrailerEmbed = getTMDBInfo[j].showTrailerEmbed;
+          movie.showTrailerWatch = getTMDBInfo[j].showTrailerWatch;
+          movie.showBackdropImage = getTMDBInfo[j].showBackdropImage;
+      }
+    }
+  
   }
+  
 }
 
 
@@ -356,7 +417,11 @@ function setMovieData(displayCards) {
 
 // Make cards for home
 function setMovieDataHome(displayCards) {
-  let homeMovies = displayCards.slice(0, 4);
+
+  let getHomeMovies = (filteredMovies = displayCards
+    .slice()
+    .sort((a, b) => a.showYear - b.showYear));
+    let homeMovies = getHomeMovies.slice(0,4);
   $("#popular-pic").empty();
 
   for (let i = 0; i < homeMovies.length; i++) {

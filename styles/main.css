@@ -4,6 +4,9 @@
 /* font-family: 'Bebas Neue', sans-serif; 
 font-family: 'Noto Sans', sans-serif;
 font-family: 'Pacifico', cursive;*/
+body{
+    margin:0;
+}
 .navbar{
     z-index: 2
 }
@@ -428,6 +431,7 @@ h1 {
     text-decoration: none;
     display: inline-block;
     transition: border-color 0.3s, color 0.3s, transform 0.3s;
+    z-index: 3;
 }
 
 .carousel-control-prev-icon {
@@ -439,6 +443,9 @@ h1 {
 }
 .tmdb-logo{
     width: 80%
+}
+.id-container{
+    z-index: 4
 }
 
 /* -------------------------------- */

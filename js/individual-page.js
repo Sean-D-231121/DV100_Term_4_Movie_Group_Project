@@ -77,7 +77,7 @@ getIndividualMovie = (id) => {
         $("title").text("Movie - " + individualInfo.showMovieTitle);
       },
     });
-  }, 1);
+  }, 500);
 };
 // Add individual movie information to wishlistMovie
 sendToWatchList = () =>{
