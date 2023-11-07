@@ -29,7 +29,21 @@ getIndividualMovie = (id) => {
       getImdbId = movie.imdb_id;
       $(".singel-movie").attr("src", imagePath + movie.poster_path);
       $("#individual-title").text("Name: "+ movie.original_title);
-      $("#individual-trailer-link").attr("href", individualTrailerWatchURL + movie.videos.results[0].key)
+      const trailers = movie.videos.results;
+      let gotTrailer = "";
+      for (let i = 0; i < trailers.length; i++) {
+        const trailer = trailers[i];
+        if(trailer.type === "Trailer"){
+          $("#individual-trailer-link").attr(
+            "href",
+            individualTrailerWatchURL + trailer.key
+          );
+          gotTrailer = trailer.key
+          break
+        }
+        
+      }
+      
       individualInfo = {
         movieOMDBId: getImdbId,
         movieTMDBId: id,
@@ -41,8 +55,8 @@ getIndividualMovie = (id) => {
         showYear: "",
         plot: "",
         runtime: "",
-        showTrailerEmbed: individualTrailerEmbedURL + movie.videos.results[0].key,
-        showTrailerWatch: individualTrailerWatchURL + movie.videos.results[0].key,
+        showTrailerEmbed: individualTrailerEmbedURL + gotTrailer,
+        showTrailerWatch: individualTrailerWatchURL + gotTrailer,
       }
       
     },
