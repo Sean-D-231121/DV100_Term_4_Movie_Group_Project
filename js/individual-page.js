@@ -83,7 +83,7 @@ getIndividualMovie = (id) => {
 sendToWatchList = () =>{
   $("#individual-add-to-wishlist").click(function(){
     const getWishlistArray = JSON.parse(localStorage.getItem("wishlistMovie")) || [];
-    if(checkIfInWatchlist(getWishlistArray,individualInfo.movieTMDBId) === true){
+    if(checkIfInWatchlist(getWishlistArray,individualInfo.movieTMDBId) === false){
       getWishlistArray.push(individualInfo);
       const newWishlist = JSON.stringify(getWishlistArray);
       localStorage.setItem("wishlistMovie", newWishlist);
@@ -98,12 +98,12 @@ checkIfInWatchlist = (wishlistArray,movieId) =>{
     for (let i = 0; i < wishlistArray.length; i++) {
       const movie = wishlistArray[i];
       if (movie.movieTMDBId === movieId) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
   } else{
-    return true;
+    return false;
   }
   
 }
