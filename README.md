@@ -7,6 +7,7 @@ This is the final assignment for DV100 Term 4 by Sean Dubbelman (231121), Kriste
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+   *[Login details](#login_details)
    * [Sign up / Sign in Page](#sign-up-sign-in)
    * [Home Page](#home)
    * [Library Page](#library)
@@ -25,7 +26,10 @@ This is the final assignment for DV100 Term 4 by Sean Dubbelman (231121), Kriste
 Retroverse is a mock streaming site that hosts a variety of popular retro movies and cult classics. 
 
 ### Sign up / Sign in Page
-
+### Login Details 
+Username: James-1988
+<br>
+Password: Mac001
 ![Retroverse](/assets/screenshots/sign_up.png)
 ![Retroverse](/assets/screenshots/sign_in.png)
 
