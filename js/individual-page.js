@@ -64,7 +64,7 @@ getIndividualMovie = (id) => {
   // Gets OMDB movie info
   setTimeout(function () {
     const getOMDBUrl =
-      "http://www.omdbapi.com/?i=" + getImdbId + "&apikey=d7afefce";
+      "https://www.omdbapi.com/?i=" + getImdbId + "&apikey=d7afefce";
     $.ajax({
       type: "GET",
       datatype: "json",
