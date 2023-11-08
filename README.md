@@ -7,7 +7,7 @@ This is the final assignment for DV100 Term 4 by Sean Dubbelman (231121), Kriste
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-   *[Login details](#login_details)
+   * [Login Details](#login_details)
    * [Sign up / Sign in Page](#sign-up-sign-in)
    * [Home Page](#home)
    * [Library Page](#library)
