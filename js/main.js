@@ -133,7 +133,6 @@ let favMovies = [];
 $(document).ready(function () {
   getMovieInfo();
   getTMDBMovieInfo();
-  
   setTimeout(function () {
     joinAPIData();
      sortMovieData();
@@ -146,21 +145,20 @@ $(document).ready(function () {
      slideWishlist();
 
   }, 1500);
+
+
+});
   $(window).on("load", function () {
+   
     userName = JSON.parse(localStorage.getItem("Username"));
     showUserName();
     cardInfoInteraction();
-    
-     let getMoviesWish = JSON.parse(localStorage.getItem("wishlistMovie"));
-     if(getMoviesWish !== null){
+
+    let getMoviesWish = JSON.parse(localStorage.getItem("wishlistMovie"));
+    if (getMoviesWish !== null) {
       retrieveLibraryData();
-     }
-       
-     
+    }
   });
-
-});
-
 // Get movie info by looping through array by using movieTitle
 getMovieArrayInfo = (movieTitle,movieArray) =>{
 for (let i = 0; i < movieArray.length; i++) {
@@ -217,7 +215,7 @@ checkIfInWatchlist = (wishlistArray,movieId) =>{
 retrieveLibraryData = () =>{
   // Retrieve the JSON data from local storage
   const wishlistMovieJSON = localStorage.getItem("wishlistMovie");
-
+  
   // Check if the data exists in local storage
   if (wishlistMovieJSON) {
     // Parse the JSON data into a JavaScript array of movies
@@ -238,6 +236,7 @@ retrieveLibraryData = () =>{
 
       // Append the new row to the table in your template
        $("#table").find("tbody").append(newRow);
+      
     });
     
   }
