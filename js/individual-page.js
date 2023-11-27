@@ -26,7 +26,6 @@ getIndividualMovie = (id) => {
     url: getIndividualMovieUrl,
     success: function (data) {
       const movie = data;
-      console.log(movie);
       getImdbId = movie.imdb_id;
       $(".singel-movie").attr("src", imagePath + movie.poster_path);
       $("#individual-title").text("Name: "+ movie.original_title);
@@ -65,14 +64,13 @@ getIndividualMovie = (id) => {
   // Gets OMDB movie info
   setTimeout(function () {
     const getOMDBUrl =
-      "http://www.omdbapi.com/?i=" + getImdbId + "&apikey=d7afefce";
+      "https://www.omdbapi.com/?i=" + getImdbId + "&apikey=d7afefce";
     $.ajax({
       type: "GET",
       datatype: "json",
       url: getOMDBUrl,
       success: function (data) {
         const movieOMDB = data;
-        console.log(movieOMDB);
         $("#actors").text("Actors: " + movieOMDB.Actors);
         $("#director").text("Director: " + movieOMDB.Director);
         $("#overview").text("Plot: " + movieOMDB.Plot);
@@ -87,7 +85,6 @@ getIndividualMovie = (id) => {
         individualInfo.showYear = movieOMDB.Year;
         individualInfo.plot = movieOMDB.Plot;
         individualInfo.runtime = movieOMDB.Runtime;
-        console.log(individualInfo);
         $("title").text("Movie - " + individualInfo.showMovieTitle);
       },
     });

@@ -321,7 +321,7 @@ function getMovieInfo() {
     const movieInfo = movieInformation[i].imdbId;
     $.ajax({
       type: "GET",
-      url: "http://www.omdbapi.com/?i=" + movieInfo + "&apikey=d7afefce",
+      url: "https://www.omdbapi.com/?i=" + movieInfo + "&apikey=d7afefce",
       success: function (data) {
         movie = data;
       },
